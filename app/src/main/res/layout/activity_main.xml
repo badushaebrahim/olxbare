@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainco"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/add_alarm_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:text="Add Product"
+        android:textColor="#191515"
+        app:layout_constraintStart_toEndOf="@+id/add_alarm_fab"
+        tools:layout_editor_absoluteY="524dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="#c6f5f5"
+        android:elevation="100dp"
+        android:orientation="vertical"
+        android:outlineSpotShadowColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="284dp"
+                android:layout_height="119dp"
+                android:layout_margin="15dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-black"
+                android:text="Resello"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="75dp"
+                android:layout_height="55dp"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/img" />
+
+            <!-- <Spinner
+                 android:id="@+id/spinner"
+                 android:layout_width="75dp"
+                 android:layout_height="75dp"
+
+                 android:background="@drawable/img"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintHorizontal_bias="0.435"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toBottomOf="@+id/textView9"
+                 tools:ignore="SpeakableTextPresentCheck" />-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottenav"
+        android:layout_width="414dp"
+        android:layout_height="52dp"
+        android:layout_margin="80dp"
+        android:background="@drawable/rounded"
+        android:elevation="4dp"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/itmselector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:menu="@menu/bottom_nav_menu"
+        tools:layout_editor_absoluteX="0dp">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mark"
+        android:layout_width="418dp"
+        android:layout_height="474dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/teal_700"
+        android:ellipsize="start"
+        android:textColor="@color/white"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconSize="45dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#F1EBEB"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_alarm_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:backgroundTint="@color/black"
+        android:contentDescription="@string/app_name"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/add_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_info"
+        app:tint="@color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
