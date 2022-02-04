@@ -88,7 +88,7 @@ public class first extends Fragment {
         View view =inflater.inflate(R.layout.fragment_first, container, false);
         // Inflate the layout for this fragment
         reses = view.findViewById(R.id.recyclerView);
-        reslay = new LinearLayoutManager(getContext());
+        reslay = new LinearLayoutManager(this.getContext());
         reses.setLayoutManager(reslay);
 
         Liste = new ArrayList<>();
