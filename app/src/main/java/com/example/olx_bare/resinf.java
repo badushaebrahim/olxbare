@@ -2,6 +2,7 @@ package com.example.olx_bare;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +19,8 @@ import java.util.List;
 
 public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1>{
     private final Context context;
-    List<Login.Listing> liste;
-    public resinf(List<Login.Listing> liste, Context context) {
+    List<Listing> liste;
+    public resinf(List<Listing> liste, Context context) {
         super();
         this.liste = liste;
         this.context = context; }
@@ -35,13 +36,15 @@ public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1
     @Override
     public void onBindViewHolder(@NonNull resinf.ViewHolder1 holder, int position) {
 //Set data
-        final Login.Listing getDataAdapter =  liste.get(position);
+        final Listing getDataAdapter =  liste.get(position);
         //holder.views.setText(getDataAdapter.getViews());
         holder.videoTitle.setText(getDataAdapter.getHead());
         holder.views.setText(getDataAdapter.getHead());
         //Picasso.with(context).load(getDataAdapter.getChannel_image()).into(holder.channelImage);
         Picasso.with(context).load(getDataAdapter.getLink()).into(holder.thumbnail);
-        holder.lm.setText("More..");
+        int pr= getDataAdapter.getExpprice();
+        String  s=String.valueOf(pr);
+        holder.lm.setText(s);
         holder.lm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

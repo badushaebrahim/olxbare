@@ -44,6 +44,7 @@
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
                 android:text="Resello"
+                android:textColor="#0B0707"
                 android:textSize="34sp"
                 android:textStyle="bold" />
 
@@ -92,9 +93,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mark"
-        android:layout_width="418dp"
-        android:layout_height="474dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="411dp"
+        android:layout_height="476dp"
+        android:layout_marginTop="88dp"
+        android:paddingTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

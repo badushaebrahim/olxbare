@@ -6,14 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,25 +88,47 @@ public class first extends Fragment {
         View view =inflater.inflate(R.layout.fragment_first, container, false);
         // Inflate the layout for this fragment
         reses = view.findViewById(R.id.recyclerView);
-       // reslay = new LinearLayoutManager(this);
-        reses.setLayoutManager(new LinearLayoutManager((getContext())));
+        reslay = new LinearLayoutManager(getContext());
+        reses.setLayoutManager(reslay);
 
         Liste = new ArrayList<>();
 
-        JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
+       JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
                 responce -> {
                     try {
+                        System.out.println(responce);
                         parse_data(responce);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 },
-                error -> Toast.makeText(getContext(), "data get error", Toast.LENGTH_SHORT).show());
+                error -> Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show());
+          /*  StringRequest jar= new StringRequest(n.URL + "getdata.php",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("TAG", "onResponse: "+response);
+                            System.out.println(response);
+                            GsonBuilder builder=new GsonBuilder();
+                            Gson gson=builder.create();
+                            Listing[] data =gson.fromJson(response, Listing[].class);
+                            //Log.d("TAG of ", "onResponse: "+data[]);
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getContext(),error.toString(),Toast.LENGTH_LONG).show();
+                    Log.d("TAG", "onErrorResponse: "+error.toString());
+                }
+            });*/
+
         queue = Volley.newRequestQueue(getContext());
         queue.add(jar);
         return view;}
     public void parse_data (JSONArray jarray) throws JSONException{
-        for (int i = 0; i < jarray.length(); i++) {
+        int i=0;
+        for (i = 0; i < jarray.length(); i++) {
             JSONObject jos = jarray.getJSONObject(i);
             Listing l = new Listing();
             l.setLink(jos.getString("imagelink"));
@@ -112,7 +140,9 @@ public class first extends Fragment {
             l.setLid(jos.getInt("Lid"));
             l.setprice(jos.getInt("expected_price"));
             Liste.add(l);
+            System.out.println(l.getHead());
         }
+        System.out.println("runs"+i);
         //adapter
         resinf rar = new resinf(Liste, getContext());
         reses.setAdapter(rar);

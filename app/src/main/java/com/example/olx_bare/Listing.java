@@ -7,7 +7,7 @@ public class Listing {
     }
 da k = new da();
     public void setLink(String link) {
-        this.link = k.URL+link;
+        this.link = k.URL+"Upload/"+link;
     }
 
     public String getHead() {
