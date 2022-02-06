@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -88,7 +89,7 @@ public class first extends Fragment {
         View view =inflater.inflate(R.layout.fragment_first, container, false);
         // Inflate the layout for this fragment
         reses = view.findViewById(R.id.recyclerView);
-        reslay = new LinearLayoutManager(this.getContext());
+        reslay = new LinearLayoutManager(this.getContext())  ;
         reses.setLayoutManager(reslay);
 
         Liste = new ArrayList<>();

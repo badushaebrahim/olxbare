@@ -8,16 +8,6 @@
     tools:context=".MainActivity"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/add_alarm_action_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="Add Product"
-        android:textColor="#191515"
-        app:layout_constraintStart_toEndOf="@+id/add_alarm_fab"
-        tools:layout_editor_absoluteY="524dp" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -123,6 +113,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="#F1EBEB"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/add_alarm_action_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Add Product"
+        android:textColor="#191515"
+        app:layout_constraintStart_toEndOf="@+id/add_alarm_fab"
+        tools:layout_editor_absoluteY="568dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_alarm_fab"
