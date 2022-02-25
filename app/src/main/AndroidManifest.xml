@@ -12,9 +12,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCpAgy0YW_mvh2DIRbKI7Cei4d5I5fGCOg?" />
+
 
     <application
         android:allowBackup="true"
@@ -26,6 +24,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Olx_bare"
         tools:replace="android:appComponentFactory,android:icon">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCpAgy0YW_mvh2DIRbKI7Cei4d5I5fGCOg?" />
         <activity
             android:name=".MainActivity"
             android:exported="true"></activity>
@@ -34,6 +35,9 @@
             android:exported="true"></activity>
         <activity
             android:name=".Register"
+            android:exported="true"></activity>
+        <activity
+            android:name=".newr"
             android:exported="true"></activity>
         <activity
             android:name=".Splash"

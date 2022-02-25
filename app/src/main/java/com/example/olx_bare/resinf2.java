@@ -1,8 +1,6 @@
 package com.example.olx_bare;
 
-
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,27 +16,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1>{
+public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolder1>{
     private final Context context;
     List<Listing> liste;
-    public resinf(List<Listing> liste, Context context) {
+    public resinf2(List<Listing> liste, Context context) {
         super();
         this.liste = liste;
         this.context = context; }
 
     @NonNull
     @Override
-    public resinf.ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carvie, parent, false);
-        resinf.ViewHolder1 viewHolder = new resinf.ViewHolder1(view);
+    public resinf2.ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carvie2, parent, false);
+        resinf2.ViewHolder1 viewHolder = new resinf2.ViewHolder1(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull resinf.ViewHolder1 holder, int position) {
-       //Toast.makeText(null,"resnif go",Toast.LENGTH_SHORT).show();
-        System.out.println("resnif");
+    public void onBindViewHolder(@NonNull resinf2.ViewHolder1 holder, int position) {
 //Set data
+      //  Toast.makeText(null,"resnif2",Toast.LENGTH_SHORT).show();
+        System.out.println("resnif2");
         final Listing getDataAdapter =  liste.get(position);
         //holder.views.setText(getDataAdapter.getViews());
         holder.videoTitle.setText(getDataAdapter.getHead());
@@ -51,18 +49,18 @@ public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1
         holder.lm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, newr.class);
+                //Intent intent = new Intent(context, newr.class);
                 //Log.d("TAG", "onClick: "+getDataAdapter.getLid());
 
-                intent.putExtra("head",getDataAdapter.getHead());
+               /* intent.putExtra("head",getDataAdapter.getHead());
                 intent.putExtra("lat",getDataAdapter.getLat());
                 intent.putExtra("longi",getDataAdapter.getLongi());
                 intent.putExtra("Details",getDataAdapter.getDetail());
                 intent.putExtra("lid",getDataAdapter.getLid());
                 intent.putExtra("sid",getDataAdapter.getSellerid());
                 intent.putExtra("imglink",getDataAdapter.getLink());
-
-                context.startActivity(intent);
+*/
+                // context.startActivity(intent);
             }});
         /* public void onClick() {
             //------listener onClick example method body ------

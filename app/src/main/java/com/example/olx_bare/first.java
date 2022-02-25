@@ -48,6 +48,10 @@ public class first extends Fragment {
     public first() {
         // Required empty public constructor
     }
+public void onPause() {
+    reses.setAdapter(null);
+    super.onPause();
+}
 
     /**
      * Use this factory method to create a new instance of
@@ -67,8 +71,8 @@ public class first extends Fragment {
         return fragment;
     }
     RecyclerView reses;
-    //  RecyclerView.Adapter reseradapter;
-    RecyclerView.LayoutManager reslay;
+ RecyclerView.Adapter reseradapter;
+RecyclerView.LayoutManager reslay;
     List<Listing> Liste;
     RequestQueue queue;
     //String URL = "http://192.168.0.104/andro/getdata.php";
@@ -83,27 +87,52 @@ public class first extends Fragment {
 
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("fen");
         View view =inflater.inflate(R.layout.fragment_first, container, false);
-        // Inflate the layout for this fragment
-        reses = view.findViewById(R.id.recyclerView);
-        reslay = new LinearLayoutManager(this.getContext())  ;
-        reses.setLayoutManager(reslay);
+       View v2 =make(view);
+        return v2;}
+    public void parse_data (JSONArray jarray) throws JSONException{
+        int i=0;
+        for (i = 0; i < jarray.length(); i++) {
+            JSONObject jos = jarray.getJSONObject(i);
+            Listing l = new Listing();
+            l.setLink(jos.getString("imagelink"));
+            l.setDetail(jos.getString("long_details"));
+            l.setHead(jos.getString("Listing_title"));
+            l.setLat((float) jos.getDouble("latitude"));
+            l.setLongi((float) jos.getDouble("longi"));
+            l.setSellerid(jos.getInt("sellerid"));
+            l.setLid(jos.getInt("Lid"));
+            l.setprice(jos.getInt("expected_price"));
+            Liste.add(l);
+            System.out.println(l.getHead());
+        }
+        System.out.println("runs in first"+i);
+        //adapter
+     resinf rar = new resinf(Liste, getActivity());
+      reses.setAdapter(rar);
+    }
 
-        Liste = new ArrayList<>();
-
-       JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
-                responce -> {
-                    try {
-                        System.out.println(responce);
-                        parse_data(responce);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                error -> Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show());
+     public View make(View v){
+         // Inflate the layout for this fragment
+         reses = v.findViewById(R.id.recyclerView);
+         reslay = new LinearLayoutManager(this.getContext())  ;
+         reses.setLayoutManager(reslay);
+         Liste = new ArrayList<>();
+         JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
+                 responce -> {
+                     try {
+                         System.out.println(responce);
+                         parse_data(responce);
+                     } catch (JSONException e) {
+                         e.printStackTrace();
+                     }
+                 },
+                 error -> Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show());
           /*  StringRequest jar= new StringRequest(n.URL + "getdata.php",
                     new Response.Listener<String>() {
                         @Override
@@ -124,29 +153,8 @@ public class first extends Fragment {
                 }
             });*/
 
-        queue = Volley.newRequestQueue(getContext());
-        queue.add(jar);
-        return view;}
-    public void parse_data (JSONArray jarray) throws JSONException{
-        int i=0;
-        for (i = 0; i < jarray.length(); i++) {
-            JSONObject jos = jarray.getJSONObject(i);
-            Listing l = new Listing();
-            l.setLink(jos.getString("imagelink"));
-            l.setDetail(jos.getString("long_details"));
-            l.setHead(jos.getString("Listing_title"));
-            l.setLat((float) jos.getDouble("latitude"));
-            l.setLongi((float) jos.getDouble("longi"));
-            l.setSellerid(jos.getInt("sellerid"));
-            l.setLid(jos.getInt("Lid"));
-            l.setprice(jos.getInt("expected_price"));
-            Liste.add(l);
-            System.out.println(l.getHead());
-        }
-        System.out.println("runs"+i);
-        //adapter
-        resinf rar = new resinf(Liste, getContext());
-        reses.setAdapter(rar);
-    }
-    }
+         queue = Volley.newRequestQueue(getContext());
+         queue.add(jar);
+     return v;
+}}
 

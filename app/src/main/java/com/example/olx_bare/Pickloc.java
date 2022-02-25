@@ -44,22 +44,23 @@ import java.util.Map;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.pickloc);
-            // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.map);
+            //Obtain the SupportMapFragment and get notified when the map is ready to be used.
+           SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+            .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
+
             mapaddress = findViewById(R.id.map_address);
             mapbtn = findViewById(R.id.map_btn);
             geocoder = new Geocoder(this, Locale.getDefault());
             addresses = new ArrayList<>();
-            mapbtn.setOnClickListener(new View.OnClickListener() {
+           /* mapbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MAPADDRESS = mapaddress.getText().toString();
                     mapAction();
                 }
             });
-        }
+*/        }
     
         /**
          * Manipulates the map once available.

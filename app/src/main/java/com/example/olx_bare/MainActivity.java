@@ -1,12 +1,5 @@
 package com.example.olx_bare;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,21 +9,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.olx_bare.databinding.FragmentFirstBinding;
-import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bm ;
@@ -40,10 +27,14 @@ public class MainActivity extends AppCompatActivity {
     TextView addAlarmActionText, addPersonActionText;
     // to check whether sub FABs are visible or not
     Boolean isAllFabsVisible,testr=true;
+    ViewPager viewpager;
+   // ViewPagerAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bm = findViewById(R.id.bottenav);
+
+       // View view = inflater.inflate(R.layout.fragment_first, container, false);
         getSupportFragmentManager().beginTransaction().replace(R.id.mainco,new first()).commit();
     bm.setSelectedItemId(R.id.product);
 
@@ -164,20 +155,30 @@ public class MainActivity extends AppCompatActivity {
         String[] items = new String[]{" ","Product", "Service"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //set the spinners adapter to the previously created one.
+
         dropdown.setAdapter(adapter);
+        viewpager =(ViewPager) findViewById(R.id.vpPager);
+
         bm.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-            switch (item.getItemId()){
+            Fragment frag =null;
+                            switch (item.getItemId()){
                 case R.id.product:
-                    frag = new first();
+                    Toast.makeText(getApplicationContext(),"selected first frag",Toast.LENGTH_SHORT).show();
+                 frag = new first();
+
                     break;
                 case R.id.service:
+                    Toast.makeText(getApplicationContext(),"selected second frag",Toast.LENGTH_SHORT).show();
+
                     frag = new secondFragment();
+
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.mark,frag).commit();
+          //  getSupportFragmentManager().beginTransaction().remove(R.id.vpPager,frag).commit();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.vpPager,frag).commit();
             return true;
         }
     });

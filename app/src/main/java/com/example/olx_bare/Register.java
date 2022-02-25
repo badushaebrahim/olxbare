@@ -3,14 +3,33 @@ package com.example.olx_bare;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Register  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
+        //no app bar
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
+//no appbar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
     }
@@ -29,6 +48,9 @@ public class Register  extends AppCompatActivity {
         pwd2=n31.getText().toString();
         phoneno=n4.getText().toString();
         address=n5.getText().toString();
+
+        //Intent is used to switch from one activity to another.
+
         if(!pwd.equals(pwd2)){
             Toast.makeText(this, "Password Mismatch", Toast.LENGTH_SHORT).show();
         }
@@ -41,15 +63,50 @@ public class Register  extends AppCompatActivity {
             n3.setError("Please add password with atleast 8 characters");
         }
     }else{
-            Intent i=new Intent(Register.this,
-                    Pickloc.class);
-            //Intent is used to switch from one activity to another.
-            i.putExtra("name",name);
-            i.putExtra("pwd",pwd);
-            i.putExtra("email",email);
-            i.putExtra("number",phoneno);
-            i.putExtra("address",address);
-            startActivity(i);
+            da n = new da();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL+"regapi.php", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    String TAG="regisrer";
+                    if (response.trim().equals("success")) {
+                        Log.d(TAG, "onResponse: uss");
+                        Intent i=new Intent(Register.this,
+                                Login.class);
+                        i.putExtra("name",name);
+                        i.putExtra("pwd",pwd);
+                        i.putExtra("email",email);
+                        i.putExtra("number",phoneno);
+                        i.putExtra("address",address);
+                        startActivity(i);
+
+
+                    } else if (response.trim().equals("failure")) {
+                        Log.d(TAG, "onResponse: fil");
+
+
+                    }Log.d(TAG, "onResponse: "+response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> data = new HashMap<>();
+                    data.put("name", name);
+                    data.put("email", email);
+                    data.put("password", pwd);
+                    data.put("address",address);
+                    data.put("number", phoneno);
+                    data.put("lati","10.1004");
+                    data.put("longi","76.3570");
+                    return data;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(stringRequest);
         }
 
 

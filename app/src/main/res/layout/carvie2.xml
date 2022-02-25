@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,13 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_margin="0dp"
-        android:backgroundTint="@color/teal_200"
+        android:backgroundTint="#7F3FF1"
 
         android:paddingTop="45dp"
+        card_view:cardBackgroundColor="#F3F3F3"
         card_view:cardCornerRadius="8dp"
-        card_view:cardElevation="15dp"
 
-        >
+        card_view:cardElevation="15dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -82,4 +81,3 @@
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>
-

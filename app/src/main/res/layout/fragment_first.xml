@@ -5,24 +5,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-<ScrollView
-    android:layout_width="413dp"
-    android:layout_height="644dp">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-
-        layout_height=""
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+
+            layout_height=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
-
-
-</ScrollView>   </LinearLayout>
+    </ScrollView>   </LinearLayout>
 
 
 
