@@ -1,5 +1,13 @@
 package com.example.olx_bare;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,7 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -21,6 +32,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bm ;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     Fragment frag = null;
     FloatingActionButton mAddAlarmFab, mAddPersonFab;
     ExtendedFloatingActionButton mAddFab;
@@ -32,18 +44,42 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bm = findViewById(R.id.bottenav);
-
+       /// bm = findViewById(R.id.bottenav);
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+        Toast.makeText(getApplicationContext(), "me"+me, LENGTH_SHORT).show();
+            make();
+            frags();
        // View view = inflater.inflate(R.layout.fragment_first, container, false);
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainco,new first()).commit();
-    bm.setSelectedItemId(R.id.product);
 
-            //no app bar
-            try
-            {
-                this.getSupportActionBar().hide();
-            }
-            catch (NullPointerException e){}
+    //bm.setSelectedItemId(R.id.product);
+
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Toast.makeText(getApplicationContext(), "hello", LENGTH_SHORT).show();
+
+        super.onBackPressed();
+    }
+
+    public void addpord(View v ){
+
+        //startActivity(i);
+    }
+    void frags(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainco,new first()).commit();
+    }
+    void make(){
+        //no app bar
+       // try
+       // {
+         this.getSupportActionBar().hide();
+       // }
+       // catch (NullPointerException e){}
 //no appbar
 // We can then use the data
 
@@ -141,25 +177,23 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       // Intent intent = new Intent(Success.this, addprod.class);
-                        // intent.putExtra("me", "rumba");
-                        //startActivity(intent);
-                        //finish();
+                        Intent intent = new Intent(MainActivity.this, addprod.class);
+                        intent.putExtra("me", "rumba");
+                        startActivity(intent);
+                        onPause();
                     }
                 });
         //shit here
         // new2.setText(me);
         //new3.setText(pwd);
         //get_data
-       Spinner dropdown=findViewById(R.id.spinner);
-        String[] items = new String[]{" ","Product", "Service"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
 //set the spinners adapter to the previously created one.
 
-        dropdown.setAdapter(adapter);
+
         viewpager =(ViewPager) findViewById(R.id.vpPager);
 
-        bm.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        /*bm.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment frag =null;
@@ -181,8 +215,31 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.vpPager,frag).commit();
             return true;
         }
-    });
+    });*/
+//kill
+      DrawerLayout drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
 
 
     }
+    @Override
+    protected void onRestart() {
+        setContentView(R.layout.activity_main);
+        /// bm = findViewById(R.id.bottenav);
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+        Toast.makeText(getApplicationContext(), "me"+me, LENGTH_SHORT).show();
+        make();
+        frags();
+
+        super.onRestart();
     }
+
+}

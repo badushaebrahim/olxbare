@@ -40,6 +40,9 @@
             android:name=".newr"
             android:exported="true"></activity>
         <activity
+            android:name=".addprod"
+            android:exported="true"></activity>
+        <activity
             android:name=".Splash"
             android:exported="true">
             <intent-filter>

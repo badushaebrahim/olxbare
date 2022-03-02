@@ -125,7 +125,13 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         startActivity(intent);
         finish();*/
     }
-
+    public void onBackPressed() {
+        Intent intent = new Intent(newr.this, MainActivity.class);
+        //intent.putExtra("lname",header);
+        //intent.putExtra("rid",);
+        startActivity(intent);
+        finish();
+    }
 }
 /* Scraped need for arrayrequest
 
