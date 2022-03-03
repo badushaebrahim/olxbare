@@ -11,9 +11,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     TextView addAlarmActionText, addPersonActionText;
     // to check whether sub FABs are visible or not
     Boolean isAllFabsVisible,testr=true;
+    Spinner dropdown;
     ViewPager viewpager;
    // ViewPagerAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,8 +193,30 @@ public class MainActivity extends AppCompatActivity {
         //get_data
 
 //set the spinners adapter to the previously created one.
-
-
+         dropdown=findViewById(R.id.spinner);
+        String[] items = new String[]{" ","My Listings", "Message","Logout"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,
+                items);
+////set the spinners adapter to the previously created one.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
+      // dropdown.onClick();
+        //TextView textView = (TextView)dropdown.getSelectedView();
+       ///* String result = textView.getText().toString();
+       /* switch (result){
+            case " ":
+                break;
+            case "My Listings":
+                Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
+                break;
+            case "Message":
+                Toast.makeText(getApplicationContext(), "message", LENGTH_SHORT).show();
+                break;
+            case "Logout":
+                Logout();
+                break;
+        }*/
         viewpager =(ViewPager) findViewById(R.id.vpPager);
 
         /*bm.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -226,9 +252,44 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
         // to make the Navigation drawer icon always appear on the action bar
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                TextView textView = (TextView)dropdown.getSelectedView();
+                String result = textView.getText().toString();
+                switch (result){
+                    case " ":
+                        break;
+                    case "My Listings":
+                        Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
+                        break;
+                    case "Message":
+                        Toast.makeText(getApplicationContext(), "message", LENGTH_SHORT).show();
+                        break;
+                    case "Logout":
+                        Actions("Login");
+                        break;
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
+    public void Actions(String where){
+        switch (where){
+            case "Login":
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        //intent.putExtra("lname",header);
+        //intent.putExtra("rid",);
+        startActivity(intent);
+        finish();
+        break;}
+    }
+
     @Override
     protected void onRestart() {
         setContentView(R.layout.activity_main);
@@ -236,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
         Toast.makeText(getApplicationContext(), "me"+me, LENGTH_SHORT).show();
-        make();
+        //make();
         frags();
 
         super.onRestart();
