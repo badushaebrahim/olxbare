@@ -173,7 +173,7 @@ public class addprod extends AppCompatActivity
                 map.put("title",name);
                 map.put("details",desig);
                 map.put("price",price);
-                String mes= String.valueOf(me);
+               final String mes= String.valueOf(me);
                 map.put("meid",mes);
                 map.put("type",result);
                 map.put("upload",encodedimage);
