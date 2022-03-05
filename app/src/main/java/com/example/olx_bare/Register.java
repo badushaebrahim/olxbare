@@ -34,6 +34,7 @@ public class Register  extends AppCompatActivity {
         setContentView(R.layout.register);
     }
     public void save(View v){
+        //Toast.makeText(getApplicationContext(), "save called", Toast.LENGTH_SHORT).show();
         String name,email,pwd,pwd2,phoneno,address;
         int tno;
         EditText n1= (EditText) findViewById(R.id.Name);
@@ -53,16 +54,21 @@ public class Register  extends AppCompatActivity {
 
         if(!pwd.equals(pwd2)){
             Toast.makeText(this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "line 57", Toast.LENGTH_SHORT).show();
         }
-        else if(!name.equals("") && !email.equals("") && !pwd.equals("")){
+        else if((!name.isEmpty()) && (!email.isEmpty()) && (!pwd.isEmpty())){
+            Toast.makeText(getApplicationContext(), "line 60", Toast.LENGTH_SHORT).show();
         if (!email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
+            Toast.makeText(getApplicationContext(), "62", Toast.LENGTH_SHORT).show();
             n2.requestFocus();
             n2.setError("please enter valid email");
         } else if (pwd.length()<8) {
+            Toast.makeText(getApplicationContext(), "66", Toast.LENGTH_SHORT).show();
             n3.requestFocus();
             n3.setError("Please add password with atleast 8 characters");
         }
     }else{
+            Toast.makeText(getApplicationContext(), "71", Toast.LENGTH_SHORT).show();
             da n = new da();
             StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL+"regapi.php", new Response.Listener<String>() {
                 @Override
@@ -72,12 +78,12 @@ public class Register  extends AppCompatActivity {
                         Log.d(TAG, "onResponse: uss");
                         Intent i=new Intent(Register.this,
                                 Login.class);
-                        i.putExtra("name",name);
+                       /* i.putExtra("name",name);
                         i.putExtra("pwd",pwd);
                         i.putExtra("email",email);
                         i.putExtra("number",phoneno);
                         i.putExtra("address",address);
-                        startActivity(i);
+                        */startActivity(i);
 
 
                     } else if (response.trim().equals("failure")) {
@@ -109,6 +115,114 @@ public class Register  extends AppCompatActivity {
             requestQueue.add(stringRequest);
         }
 
+    }
+public  void bypas(View v){
+    String name,email,pwd,pwd2,phoneno,address;
+    int tno;
+    EditText n1= (EditText) findViewById(R.id.Name);
+    EditText n2= (EditText) findViewById(R.id.Email);
+    EditText n3= (EditText) findViewById(R.id.Password);
+    EditText n31= (EditText) findViewById(R.id.password2);
+    EditText n4= (EditText) findViewById(R.id.Number);
+    EditText n5= (EditText) findViewById(R.id.Address);
+    name= n1.getText().toString();
+    email=n2.getText().toString();
+    pwd= n3.getText().toString();
+    pwd2=n31.getText().toString();
+    phoneno=n4.getText().toString();
+    address=n5.getText().toString();
+    Toast.makeText(getApplicationContext(), "71", Toast.LENGTH_SHORT).show();
+    da n = new da();
 
+    if (!email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
+        Toast.makeText(getApplicationContext(), "62", Toast.LENGTH_SHORT).show();
+        n2.requestFocus();
+        n2.setError("please enter valid email");
+
+    } else if(!pwd.equals(pwd2)){
+        Toast.makeText(this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "line 57", Toast.LENGTH_SHORT).show();
+    }
+    else if (pwd.length()<8) {
+        Toast.makeText(getApplicationContext(), "66", Toast.LENGTH_SHORT).show();
+        n3.requestFocus();
+        n3.setError("Please add password with atleast 8 characters");
+    }
+    else if (pwd.isEmpty()){
+        n3.requestFocus();
+        n3.setError("Empty Password");
+        Toast.makeText(getApplicationContext(), "No Password", Toast.LENGTH_SHORT).show();
+    }
+    else if (email.isEmpty()){
+        n2.requestFocus();
+        n2.setError("Empty Email");
+        Toast.makeText(getApplicationContext(), "No Email is empty", Toast.LENGTH_SHORT).show();
+    }
+    else if (phoneno.isEmpty()){
+        n4.requestFocus();
+        n4.setError("Empty Phone Number");
+        Toast.makeText(getApplicationContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
+    }else if (address.isEmpty()){
+        n5.requestFocus();
+        n5.setError("Empty Address");
+        Toast.makeText(getApplicationContext(), "No address", Toast.LENGTH_SHORT).show();
+    }
+    else if (name.isEmpty()){
+        n1.requestFocus();
+        n1.setError("Empty Name");
+        Toast.makeText(getApplicationContext(), "No Name", Toast.LENGTH_SHORT).show();
+    }
+    else {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL + "regapi.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                String TAG = "regisrer";
+                if (response.trim().equals("success")) {
+                    Log.d(TAG, "onResponse: uss");
+                    Intent i = new Intent(Register.this,
+                            Login.class);
+                       /* i.putExtra("name",name);
+                        i.putExtra("pwd",pwd);
+                        i.putExtra("email",email);
+                        i.putExtra("number",phoneno);
+                        i.putExtra("address",address);
+                        */
+                    startActivity(i);
+
+
+                } else if (response.trim().equals("failure")) {
+                    Log.d(TAG, "onResponse: fil");
+
+
+                }
+                Log.d(TAG, "onResponse: " + response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("name", name);
+                data.put("email", email);
+                data.put("password", pwd);
+                data.put("address", address);
+                data.put("number", phoneno);
+                data.put("lati", "10.1004");
+                data.put("longi", "76.3570");
+                return data;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
+}
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
