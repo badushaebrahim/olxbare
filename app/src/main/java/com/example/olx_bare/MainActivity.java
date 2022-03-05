@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
 //set the spinners adapter to the previously created one.
          dropdown=findViewById(R.id.spinner);
-        String[] items = new String[]{" ","My Listings", "Message","Logout"};
+        String[] items = new String[]{" ","Listings", "Message","Logout"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 items);
@@ -260,8 +260,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (result){
                     case " ":
                         break;
-                    case "My Listings":
+                    case "Listings":
                         Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
+                        Actions("Listings");
                         break;
                     case "Message":
                         Toast.makeText(getApplicationContext(), "message", LENGTH_SHORT).show();
@@ -287,7 +288,14 @@ public class MainActivity extends AppCompatActivity {
         //intent.putExtra("rid",);
         startActivity(intent);
         finish();
-        break;}
+        break;
+        case "Listings": Intent intent2 = new Intent(MainActivity.this, MyListings.class);
+        //intent.putExtra("lname",header);
+            // intent.putExtra("rid",);
+            startActivity(intent2);
+                finish();
+        break;
+        }
     }
 
     @Override

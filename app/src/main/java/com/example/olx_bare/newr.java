@@ -1,6 +1,7 @@
 package com.example.olx_bare;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,11 +23,11 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
     RequestQueue queue;
     GoogleMap mMap;
     float lat= 35,longi=35;
-    TextView head,details;
+    TextView head,details,price,address;
     ImageView img;
     String TAG ="Newr Activity";
-    String header;
-    int sid, lid ;
+    String header,contact;
+    int sid, lid ,pric;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +39,15 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         head= findViewById(R.id.heading);
         details = findViewById(R.id.Details);
         img = findViewById(R.id.image);
-
+        price=findViewById(R.id.price);
+        address=findViewById(R.id.Address);
+        contact= getIntent().getExtras().getString("contact");
 
     }
 
 
     public void onMapReady(GoogleMap googleMap) {da n = new da();
-        String url = n.URL+"readCourses.php";
+     //   String url = n.URL+"readCourses.php";
         mMap = googleMap;
         header=getIntent().getExtras().getString("head");
         head.setText(header);
@@ -53,6 +56,11 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         //load an imge using picasso
         String lin = getIntent().getExtras().getString("imglink");
         da l = new da();
+        pric
+                = getIntent().getExtras().getInt("price");
+        price.setText("Expected Price :-"+pric);
+        String addr = getIntent().getExtras().getString("address");
+        address.setText(addr);
         String ps= l.URL+"upload/"+lin;
         Picasso.with(this).load(lin).into(img);
         float longi =getIntent().getExtras().getFloat("longi");
@@ -131,6 +139,12 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         //intent.putExtra("rid",);
         startActivity(intent);
         finish();
+    }
+    public void Callsel(View v){
+       // Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ""+pric));
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+contact));
+        startActivity(intent);
     }
 }
 /* Scraped need for arrayrequest
