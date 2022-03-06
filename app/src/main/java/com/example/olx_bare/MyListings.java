@@ -48,6 +48,7 @@ public class MyListings extends AppCompatActivity {
         JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
                 responce -> {
                     try {
+                        new da(responce.toString());
                         parse_data(responce);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -57,7 +58,7 @@ public class MyListings extends AppCompatActivity {
         queue = Volley.newRequestQueue(MyListings.this);
         queue.add(jar);
     }
-        public void  killactionbar(){ this.getSupportActionBar().hide();}
+
 
     public void parse_data (JSONArray jarray) throws JSONException {
         int i=0;
@@ -67,6 +68,7 @@ public class MyListings extends AppCompatActivity {
             int ch=jos.getInt("sellerid");
             @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
             int me = sh.getInt("uid", 0);
+            Toast.makeText(getApplicationContext(), "iam"+me, Toast.LENGTH_SHORT).show();
             if(ch==me) {
                 l.setLink(jos.getString("imagelink"));
                 l.setDetail(jos.getString("long_details"));
@@ -80,6 +82,7 @@ public class MyListings extends AppCompatActivity {
                 l.setLid(jos.getInt("Lid"));
                 l.setprice(jos.getInt("expected_price"));
                 Liste.add(l);
+                new da("1");
                 System.out.println(l.getHead());
             }
             }
@@ -99,7 +102,7 @@ public class MyListings extends AppCompatActivity {
 
 
 
-
+    public void  killactionbar(){ this.getSupportActionBar().hide();}
 public void  goback(View V ){
     Intent intent = new Intent(MyListings.this, MainActivity.class);
     //intent.putExtra("lname",header);

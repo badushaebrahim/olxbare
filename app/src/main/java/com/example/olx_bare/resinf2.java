@@ -32,6 +32,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
     @Override
     public resinf2.ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carvie, parent, false);
+        System.out.print("at resnif 2 on create");
         resinf2.ViewHolder1 viewHolder = new resinf2.ViewHolder1(view);
         return viewHolder;
     }
@@ -40,6 +41,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
     public void onBindViewHolder(@NonNull resinf2.ViewHolder1 holder, int position) {
         final Listing getDataAdapter =  liste.get(position);
         //holder.views.setText(getDataAdapter.getViews());
+        new da("at resnif2");
         holder.videoTitle.setText(getDataAdapter.getHead());
         holder.views.setText(getDataAdapter.getHead());
         //Picasso.with(context).load(getDataAdapter.getChannel_image()).into(holder.channelImage);
@@ -47,6 +49,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
         String q= getDataAdapter.getType();
         Toast.makeText(context.getApplicationContext(), ""+q, Toast.LENGTH_SHORT).show();
         if(q.equals("Product")){
+            new da("product at if ");
             holder.im.setImageResource(R.drawable.cart);}
         else {holder.im.setImageResource(R.drawable.service);}
         //
