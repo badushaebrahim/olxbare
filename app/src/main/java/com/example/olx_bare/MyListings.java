@@ -36,7 +36,26 @@ public class MyListings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listi);
         killactionbar();
-
+        init();
+        p1();
+    }
+    public void init(){
+        reses = findViewById(R.id.listview);
+        reslay = new LinearLayoutManager(this);
+        reses.setLayoutManager(reslay);
+        Liste = new ArrayList<>();}
+    public void p1(){
+        JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
+                responce -> {
+                    try {
+                        parse_data(responce);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Toast.makeText(MyListings.this, "data get error", Toast.LENGTH_SHORT).show());
+        queue = Volley.newRequestQueue(MyListings.this);
+        queue.add(jar);
     }
         public void  killactionbar(){ this.getSupportActionBar().hide();}
 
@@ -45,20 +64,27 @@ public class MyListings extends AppCompatActivity {
         for (i = 0; i < jarray.length(); i++) {
             JSONObject jos = jarray.getJSONObject(i);
             Listing l = new Listing();
-            l.setLink(jos.getString("imagelink"));
-            l.setDetail(jos.getString("long_details"));
-            l.setHead(jos.getString("Listing_title"));
-            l.setLat((float) jos.getDouble("latitude"));
-            l.setLongi((float) jos.getDouble("longi"));
-            l.setSellerid(jos.getInt("sellerid"));
-            l.setNumber(jos.getString("contactno"));
-            l.setAddress(jos.getString("address"));
-            l.setType(jos.getString("type"));
-            l.setLid(jos.getInt("Lid"));
-            l.setprice(jos.getInt("expected_price"));
-            Liste.add(l);
-            System.out.println(l.getHead());
-        }
+            int ch=jos.getInt("sellerid");
+            @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+            int me = sh.getInt("uid", 0);
+            if(ch==me) {
+                l.setLink(jos.getString("imagelink"));
+                l.setDetail(jos.getString("long_details"));
+                l.setHead(jos.getString("Listing_title"));
+                l.setLat((float) jos.getDouble("latitude"));
+                l.setLongi((float) jos.getDouble("longi"));
+                l.setSellerid(jos.getInt("sellerid"));
+                l.setNumber(jos.getString("contactno"));
+                l.setAddress(jos.getString("address"));
+                l.setType(jos.getString("type"));
+                l.setLid(jos.getInt("Lid"));
+                l.setprice(jos.getInt("expected_price"));
+                Liste.add(l);
+                System.out.println(l.getHead());
+            }
+            }
+        resinf2 rar = new resinf2(Liste, this);
+        reses.setAdapter(rar);
 
 }
 
