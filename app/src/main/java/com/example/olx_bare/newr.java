@@ -110,11 +110,11 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
 
 
         // Log.d("maps", "onMapReady: "+l);
-         la = (int) lat;
-         lo  = (int)longi;
+        // la = (int) lat;
+       //  lo  = (int)longi;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(la, lo);
+        LatLng sydney = new LatLng(lat, longi);
         mMap.addMarker(new MarkerOptions()
                 .position(sydney)
                 .title("Seller Location"));
