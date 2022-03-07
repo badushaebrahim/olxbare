@@ -15,7 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.LongSparseArray;
 
-import com.google.android.gms.common.api.Response;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,7 +47,12 @@ import java.util.Map;
         Button mapbtn;
     
         @Override
-        protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) { //no app bar
+            try
+            {
+                this.getSupportActionBar().hide();
+            }
+            catch (NullPointerException e){}
             super.onCreate(savedInstanceState);
             setContentView(R.layout.pickloc);
             //Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -53,14 +64,14 @@ import java.util.Map;
             mapbtn = findViewById(R.id.map_btn);
             geocoder = new Geocoder(this, Locale.getDefault());
             addresses = new ArrayList<>();
-           /* mapbtn.setOnClickListener(new View.OnClickListener() {
+            mapbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     MAPADDRESS = mapaddress.getText().toString();
                     mapAction();
                 }
             });
-*/        }
+        }
     
         /**
          * Manipulates the map once available.
@@ -105,56 +116,69 @@ import java.util.Map;
                         Log.d("***", e + "\n" + addresses.toString());
                         e.printStackTrace();
                     }
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(addresses.toString()).snippet("Lcc").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(addresses.toString()).snippet("My Loc").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
     //                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                     float zoomLevel = 13.0f; //This goes up to 21
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(aluva, zoomLevel));
                 }
             });
+
         }
         public void mapAction() {
-            Log.d("TAG", "mapAction: ("+LATTITUDE+","+LONGITUDE);
-           /* com.android.volley.RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-            StringRequest request = new StringRequest(Request.Method.POST, Utility.url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d("******", response);
-                    if (!response.trim().equals("failed")) {
-                        Intent i=new Intent( getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-                        Toast.makeText(getApplicationContext(), "Successfully Registerd", Toast.LENGTH_SHORT).show();
-    
-                    } else {
-                        Toast.makeText(getApplicationContext(), "..!", Toast.LENGTH_LONG).show();
-                    }
+            da n= new da();
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL + "regapi.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.print(response);
+                String TAG = "regisrer";
+                if (response.trim().equals("success")) {
+                    Log.d(TAG, "onResponse: uss");
+                    Intent i = new Intent(Pickloc.this,
+                            Login.class);
+                       /*  i . p u T E x t r a ("n a  m e ", n a m e);
+                        i.p u t E x t r a("pwd",pwd);
+                        i.putExtra("email",email);
+                        i.putExtra("number",phoneno);
+                        i.putExtra("address",address);
+                        */
+                    startActivity(i);
+        finish();
+
+
+                } else if (response.trim().equals("failure")) {
+                    Log.d(TAG, "onResponse: fil");
+
+
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-    
-                    Toast.makeText(getApplicationContext(), "my error :" + error, Toast.LENGTH_LONG).show();
-                    Log.i("My error", "" + error);
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> map = new HashMap<String, String>();
-                    SharedPreferences prefs = getApplicationContext().getSharedPreferences("SharedData", MODE_PRIVATE);
-                    final String uid = prefs.getString("logid", "No logid");//"No name defined" is the default value.
-    
-                    map.put("key", "customer_register");
-                    map.put("name", NAME);
-                    map.put("contact", CONTACT);
-                    map.put("email", EMAILID);
-                    map.put("psw", PASSWORD);
-                    map.put("address", MAPADDRESS);
-                    map.put("latitude", LATTITUDE);
-                    map.put("longitude", LONGITUDE);
-    
-    
-                    return map;
-                }
-            };
-            queue.add(request);*/
+                Log.d(TAG, "onResponse: " + response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                NAME=getIntent().getExtras().getString("name");
+                data.put("name", NAME);
+                EMAILID=getIntent().getExtras().getString("email");
+                data.put("email", EMAILID);
+                PASSWORD=getIntent().getExtras().getString("password");
+                data.put("password", PASSWORD);
+                MAPADDRESS=getIntent().getExtras().getString("address");
+                data.put("address", MAPADDRESS);
+                String phoneno =getIntent().getExtras().getString("number");
+                data.put("number", phoneno);
+               data.put("lati", LATTITUDE);
+              data.put("longi", LONGITUDE);
+                return data;
+            }
+        };
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(stringRequest);
         }
+
+
     }

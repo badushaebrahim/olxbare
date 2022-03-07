@@ -220,7 +220,77 @@ public  void bypas(View v){
         requestQueue.add(stringRequest);
     }
 }
+public void ultrabypas(View v){
+    String name,email,pwd,pwd2,phoneno,address;
+    int tno;
+    EditText n1= (EditText) findViewById(R.id.Name);
+    EditText n2= (EditText) findViewById(R.id.Email);
+    EditText n3= (EditText) findViewById(R.id.Password);
+    EditText n31= (EditText) findViewById(R.id.password2);
+    EditText n4= (EditText) findViewById(R.id.Number);
+    EditText n5= (EditText) findViewById(R.id.Address);
+    name= n1.getText().toString();
+    email=n2.getText().toString();
+    pwd= n3.getText().toString();
+    pwd2=n31.getText().toString();
+    phoneno=n4.getText().toString();
+    address=n5.getText().toString();
+    Toast.makeText(getApplicationContext(), "71", Toast.LENGTH_SHORT).show();
+    da n = new da();
 
+    if (!email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
+        Toast.makeText(getApplicationContext(), "62", Toast.LENGTH_SHORT).show();
+        n2.requestFocus();
+        n2.setError("please enter valid email");
+
+    } else if(!pwd.equals(pwd2)){
+        Toast.makeText(this, "Password Mismatch", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "line 57", Toast.LENGTH_SHORT).show();
+    }
+    else if (pwd.length()<8) {
+        Toast.makeText(getApplicationContext(), "66", Toast.LENGTH_SHORT).show();
+        n3.requestFocus();
+        n3.setError("Please add password with atleast 8 characters");
+    }
+    else if (pwd.isEmpty()){
+        n3.requestFocus();
+        n3.setError("Empty Password");
+        Toast.makeText(getApplicationContext(), "No Password", Toast.LENGTH_SHORT).show();
+    }
+    else if (email.isEmpty()){
+        n2.requestFocus();
+        n2.setError("Empty Email");
+        Toast.makeText(getApplicationContext(), "No Email is empty", Toast.LENGTH_SHORT).show();
+    }
+    else if (phoneno.isEmpty()){
+        n4.requestFocus();
+        n4.setError("Empty Phone Number");
+        Toast.makeText(getApplicationContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
+    }else if (address.isEmpty()){
+        n5.requestFocus();
+        n5.setError("Empty Address");
+        Toast.makeText(getApplicationContext(), "No address", Toast.LENGTH_SHORT).show();
+    }
+    else if (name.isEmpty()){
+        n1.requestFocus();
+        n1.setError("Empty Name");
+        Toast.makeText(getApplicationContext(), "No Name", Toast.LENGTH_SHORT).show();
+    }
+    else {
+        Intent in = new Intent(getApplicationContext(), Pickloc.class);
+                in.putExtra("name", name);
+        in.putExtra("email", email);
+        in.putExtra("password", pwd);
+        in.putExtra("address", address);
+        in.putExtra("number", phoneno);
+       // in.putExtra("lati", "10.1004");
+       // in.putExtra("longi", "76.3570");
+             //   return data;
+    startActivity(in);
+
+
+    }
+}
     @Override
     public void onBackPressed() {
         super.onBackPressed();

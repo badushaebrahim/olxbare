@@ -43,6 +43,9 @@
             android:name=".MyListings"
             android:exported="true"></activity>
         <activity
+            android:name=".Pickloc"
+            android:exported="true"></activity>
+        <activity
             android:name=".addprod"
             android:exported="true"></activity>
         <activity
