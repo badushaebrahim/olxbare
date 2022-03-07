@@ -243,13 +243,13 @@ public class MainActivity extends AppCompatActivity {
         }
     });*/
 //kill
-      DrawerLayout drawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+     // DrawerLayout drawerLayout = findViewById(R.id.my_drawer_layout);
+      //  actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+     //   drawerLayout.addDrawerListener(actionBarDrawerToggle);
+      //  actionBarDrawerToggle.syncState();
 
         // to make the Navigation drawer icon always appear on the action bar
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -295,6 +295,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent2);
                 finish();
         break;
+            case "Message": Intent intent22 = new Intent(MainActivity.this, messages.class);
+                //intent.putExtra("lname",header);
+                // intent.putExtra("rid",);
+                startActivity(intent22);
+                finish();
+                break;
         }
     }
 
