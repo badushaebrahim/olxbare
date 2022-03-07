@@ -26,7 +26,7 @@
         tools:replace="android:appComponentFactory,android:icon">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCpAgy0YW_mvh2DIRbKI7Cei4d5I5fGCOg?" />
+            android:value="${MAPS_API_KEY}" />
         <activity
             android:name=".MainActivity"
             android:exported="true"></activity>

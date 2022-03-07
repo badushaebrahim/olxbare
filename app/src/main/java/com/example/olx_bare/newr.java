@@ -19,15 +19,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 public class newr extends FragmentActivity implements OnMapReadyCallback {
     RequestQueue queue;
     GoogleMap mMap;
-    float lat= 35,longi=35;
+  float lat= 35,longi=35;
     TextView head,details,price,address;
     ImageView img;
     String TAG ="Newr Activity";
     String header,contact;
-    int sid, lid ,pric;
+    int sid, lid ,pric,la,lo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         address=findViewById(R.id.Address);
         contact= getIntent().getExtras().getString("contact");
 
+
     }
 
 
@@ -56,15 +60,13 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         //load an imge using picasso
         String lin = getIntent().getExtras().getString("imglink");
         da l = new da();
-        pric
-                = getIntent().getExtras().getInt("price");
+        pric = getIntent().getExtras().getInt("price");
         price.setText("Expected Price :-"+pric);
         String addr = getIntent().getExtras().getString("address");
         address.setText(addr);
         String ps= l.URL+"upload/"+lin;
         Picasso.with(this).load(lin).into(img);
-        float longi =getIntent().getExtras().getFloat("longi");
-        float lat = getIntent().getExtras().getFloat("lat");
+
             System.out.print((header+details));
         //float l2 = 35;
         // Add a marker in Sydney and move the camera
@@ -79,7 +81,8 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         Log.d(TAG, "onMapReady: sid "+sid);
         Log.d(TAG, "onMapReady: Listing id "+lid);
 
-
+        longi =getIntent().getExtras().getFloat("longi");
+        lat = getIntent().getExtras().getFloat("lat");
 
 
         /* StringRequest gets = new StringRequest( Request.Method.POST,url,new com.android.volley.Response.Listener<String>(){
@@ -107,12 +110,21 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
 
 
         // Log.d("maps", "onMapReady: "+l);
-        int la = (int) lat;
-        int lo  = (int)longi;
-        LatLng Kerala = new LatLng(la,lo);
-        mMap.addMarker(new MarkerOptions().position(Kerala)
-                .title("Marker in place"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Kerala));
+         la = (int) lat;
+         lo  = (int)longi;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(la, lo);
+        mMap.addMarker(new MarkerOptions()
+                .position(sydney)
+                .title("Seller Location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+    public void gomaps(View v){
+        Uri navigationIntentUri = Uri.parse("google.navigation:q=" + lat +"," + longi);//creating intent with latlng
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
     public void m(View v){
         // String me=getIntent().getExtras().getString("me");

@@ -55,7 +55,7 @@ public class MyListings extends AppCompatActivity {
                     }
                 },
                 error -> Toast.makeText(MyListings.this, "data get error", Toast.LENGTH_SHORT).show());
-        queue = Volley.newRequestQueue(MyListings.this);
+        queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(jar);
     }
 
