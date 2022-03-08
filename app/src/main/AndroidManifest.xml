@@ -58,6 +58,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".messages" />
+        <activity android:name=".messageslist" />
 
     </application>
 

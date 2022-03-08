@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent2);
                 finish();
         break;
-            case "Message": Intent intent22 = new Intent(MainActivity.this, messages.class);
+            case "Message": Intent intent22 = new Intent(MainActivity.this, messageslist.class);
                 //intent.putExtra("lname",header);
                 // intent.putExtra("rid",);
                 startActivity(intent22);
