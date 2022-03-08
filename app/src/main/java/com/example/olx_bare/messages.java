@@ -47,15 +47,16 @@ public class messages extends AppCompatActivity {
                 msgr=msg.getText().toString().trim();
                 if(!msgr.isEmpty()){
                 da n = new da();
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL+"Sentmessagebuyr.php", new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL+"sentmessagebuyr.php", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("resok",response);
                         //response="success";
                         String nes = response.toString();
                         Log.d("resok",nes);
-                        if (!response.trim().equals("sus")) {
+                        if (!response.trim().equals("oks")) {
                             Log.d("TAG", "onResponse: worked");
+                            msg.setText("");
 
                            // SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
 
@@ -68,7 +69,7 @@ public class messages extends AppCompatActivity {
                             // intent.putExtra("pwd",PASSWORD);
                             startActivity(intent);
                             finish();*/
-                        } else if(response.trim().equals("failure")) {
+                        } else if(response.trim().equals("fail")) {
                             Log.d("TAG", "onResponse: not in bro ");
                             Toast.makeText(messages.this, "Invalid Login Id/Password", Toast.LENGTH_SHORT).show();
                         }
@@ -92,12 +93,19 @@ public class messages extends AppCompatActivity {
                         data.put("reciver", String.valueOf(reciver));
                         int prodno = getIntent().getExtras().getInt("lid");
                         data.put("prodno", String.valueOf(prodno));
+                        String proname=getIntent().getExtras().getString("head");
+                        data.put("prodname",proname);
                         return data;
                     }
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                 requestQueue.add(stringRequest);
-            }}
+            }
+            else{
+                    msg.requestFocus();
+                    msg.setError("please add message");
+                }
+            }
         });
     }
 

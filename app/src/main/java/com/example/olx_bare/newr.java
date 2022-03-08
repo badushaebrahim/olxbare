@@ -136,15 +136,16 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         finish();
     }
     public void mse(View v){
-        /*Intent intent = new Intent(newr.this, msg.class);
+       Intent intent = new Intent(newr.this, messages.class);
         Log.d("TAG", "mse: ok");
-        intent.putExtra("lname",header);
-        intent.putExtra("sellerid",sid);
-        intent.putExtra("listingid",lid);
-
+        intent.putExtra("head",header);
+        intent.putExtra("sid",sid);
+        intent.putExtra("lid",lid);
+        intent.putExtra("lid",lid);
         startActivity(intent);
-        finish();*/
+        finish();
     }
+
     public void onBackPressed() {
         Intent intent = new Intent(newr.this, MainActivity.class);
         //intent.putExtra("lname",header);

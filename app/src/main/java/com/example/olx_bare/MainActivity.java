@@ -4,6 +4,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -34,30 +35,30 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bm ;
+    BottomNavigationView bm;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Fragment frag = null;
     FloatingActionButton mAddAlarmFab, mAddPersonFab;
     ExtendedFloatingActionButton mAddFab;
     TextView addAlarmActionText, addPersonActionText;
     // to check whether sub FABs are visible or not
-    Boolean isAllFabsVisible,testr=true;
+    Boolean isAllFabsVisible, testr = true;
     Spinner dropdown;
     ViewPager viewpager;
-   // ViewPagerAdapter adapter;
+
+    // ViewPagerAdapter adapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /// bm = findViewById(R.id.bottenav);
+        /// bm = findViewById(R.id.bottenav);
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
-        Toast.makeText(getApplicationContext(), "me"+me, LENGTH_SHORT).show();
-            make();
-            frags();
-       // View view = inflater.inflate(R.layout.fragment_first, container, false);
+        Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
+        make();
+        frags();
+        // View view = inflater.inflate(R.layout.fragment_first, container, false);
 
-    //bm.setSelectedItemId(R.id.product);
-
+        //bm.setSelectedItemId(R.id.product);
 
 
     }
@@ -70,24 +71,26 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void addpord(View v ){
+    public void addpord(View v) {
 
         //startActivity(i);
     }
-    void frags(){
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainco,new first()).commit();
+
+    void frags() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainco, new first()).commit();
     }
-    void make(){
+
+    void make() {
         //no app bar
-       // try
-       // {
-         this.getSupportActionBar().hide();
-       // }
-       // catch (NullPointerException e){}
+        // try
+        // {
+        this.getSupportActionBar().hide();
+        // }
+        // catch (NullPointerException e){}
 //no appbar
 // We can then use the data
 
-        Log.d("TAG", "onCreate: id of user " );
+        Log.d("TAG", "onCreate: id of user ");
         //shit
         mAddFab = findViewById(R.id.add_fab);
         mAddAlarmFab = findViewById(R.id.add_alarm_fab);
@@ -193,17 +196,17 @@ public class MainActivity extends AppCompatActivity {
         //get_data
 
 //set the spinners adapter to the previously created one.
-         dropdown=findViewById(R.id.spinner);
-        String[] items = new String[]{" ","Listings", "Message","Logout"};
+        dropdown = findViewById(R.id.spinner);
+        String[] items = new String[]{" ", "Listings", "Message", "Logout"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 items);
 ////set the spinners adapter to the previously created one.
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
-      // dropdown.onClick();
+        // dropdown.onClick();
         //TextView textView = (TextView)dropdown.getSelectedView();
-       ///* String result = textView.getText().toString();
+        ///* String result = textView.getText().toString();
        /* switch (result){
             case " ":
                 break;
@@ -217,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 Logout();
                 break;
         }*/
-        viewpager =(ViewPager) findViewById(R.id.vpPager);
+        viewpager = (ViewPager) findViewById(R.id.vpPager);
 
         /*bm.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
         @Override
@@ -243,21 +246,21 @@ public class MainActivity extends AppCompatActivity {
         }
     });*/
 //kill
-     // DrawerLayout drawerLayout = findViewById(R.id.my_drawer_layout);
-      //  actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+        // DrawerLayout drawerLayout = findViewById(R.id.my_drawer_layout);
+        //  actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
         // pass the Open and Close toggle for the drawer layout listener
         // to toggle the button
-     //   drawerLayout.addDrawerListener(actionBarDrawerToggle);
-      //  actionBarDrawerToggle.syncState();
+        //   drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        //  actionBarDrawerToggle.syncState();
 
         // to make the Navigation drawer icon always appear on the action bar
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                TextView textView = (TextView)dropdown.getSelectedView();
+                TextView textView = (TextView) dropdown.getSelectedView();
                 String result = textView.getText().toString();
-                switch (result){
+                switch (result) {
                     case " ":
                         break;
                     case "Listings":
@@ -280,22 +283,26 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void Actions(String where){
-        switch (where){
+
+    public void Actions(String where) {
+        switch (where) {
             case "Login":
-        Intent intent = new Intent(MainActivity.this, Login.class);
-        //intent.putExtra("lname",header);
-        //intent.putExtra("rid",);
-        startActivity(intent);
-        finish();
-        break;
-        case "Listings": Intent intent2 = new Intent(MainActivity.this, MyListings.class);
-        //intent.putExtra("lname",header);
-            // intent.putExtra("rid",);
-            startActivity(intent2);
+                killpref();//custom functin remove shared prefrenc variable stored inside
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                //intent.putExtra("lname",header);
+                //intent.putExtra("rid",);
+                startActivity(intent);
                 finish();
-        break;
-            case "Message": Intent intent22 = new Intent(MainActivity.this, messageslist.class);
+                break;
+            case "Listings":
+                Intent intent2 = new Intent(MainActivity.this, MyListings.class);
+                //intent.putExtra("lname",header);
+                // intent.putExtra("rid",);
+                startActivity(intent2);
+                finish();
+                break;
+            case "Message":
+                Intent intent22 = new Intent(MainActivity.this, messageslist.class);
                 //intent.putExtra("lname",header);
                 // intent.putExtra("rid",);
                 startActivity(intent22);
@@ -310,11 +317,18 @@ public class MainActivity extends AppCompatActivity {
         /// bm = findViewById(R.id.bottenav);
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
-        Toast.makeText(getApplicationContext(), "me"+me, LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
         //make();
         frags();
 
         super.onRestart();
     }
 
+    void killpref() {
+        SharedPreferences prefs = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.commit();
+
+    }
 }
