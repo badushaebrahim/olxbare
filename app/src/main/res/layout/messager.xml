@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/colorAccent">
 
     <Button
         android:id="@+id/back"
@@ -21,6 +22,7 @@
         android:layout_height="626dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
+        android:backgroundTint="#E8E1E1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/back" />
@@ -45,8 +47,8 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Message" />
+                android:hint="message"
+                android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/sendbut"

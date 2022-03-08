@@ -12,22 +12,39 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class messages extends AppCompatActivity {
     EditText msg;
-    String msgr;
+    String msgr,touse;
     Button snd;
+    int rid,pid;
+
+   public  List<msgmodel> Liste;
+    RecyclerView reses;
+    //  RecyclerView.Adapter reseradapter;
+    RecyclerView.LayoutManager reslay;
+
+    RequestQueue queue;
     @Override
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,8 +53,73 @@ public class messages extends AppCompatActivity {
         setContentView(R.layout.messager);
         killapbar();
         init();
-
+        getdatafrom();
+        adddatat();
         sendact();
+
+    }
+
+    private void adddatat() {
+        reses=findViewById(R.id.recyclerView2);
+        reslay = new LinearLayoutManager(this);
+        reses.setLayoutManager(reslay);
+        Liste = new ArrayList<>();
+        getdatafrom();
+    }
+
+    private void getdatafrom() {
+        JsonArrayRequest jar = new JsonArrayRequest(touse ,
+                responce -> {
+                    try {
+                        System.out.println(responce);
+                        parse_msg(responce);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> Toast.makeText(messages.this, error.toString(), Toast.LENGTH_LONG).show());
+          /*  StringRequest jar= new StringRequest(n.URL + "getdata.php",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("TAG", "onResponse: "+response);
+                            System.out.println(response);
+                            GsonBuilder builder=new GsonBuilder();
+                            Gson gson=builder.create();
+                            Listing[] data =gson.fromJson(response, Listing[].class);
+                            //Log.d("TAG of ", "onResponse: "+data[]);
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getContext(),error.toString(),Toast.LENGTH_LONG).show();
+                    Log.d("TAG", "onErrorResponse: "+error.toString());
+                }
+            });*/
+
+        queue = Volley.newRequestQueue(messages.this);
+        queue.add(jar);
+
+    }
+    private void parse_msg (JSONArray jarray) throws JSONException {
+
+        for (int i = 0; i < jarray.length(); i++) {
+            JSONObject jos = jarray.getJSONObject(i);
+            msgmodel l = new msgmodel();
+            l.setMsg(jos.getString("msg"));
+            l.setPid(jos.getInt("prodid"));
+            l.setPname(jos.getString("prodname"));
+            l.setSid(jos.getInt("senterid"));
+            l.setRid(jos.getInt("reciverid"));
+            l.setSentername(jos.getString("sentername"));
+
+            Liste.add(l);
+        }
+        //adapter
+      //  resinf rar = new resinf(Liste, this);
+            msgadapter m = new msgadapter(Liste,this);
+      //  reses.setAdapter(rar);
     }
 
     private void sendact() {
@@ -54,10 +136,10 @@ public class messages extends AppCompatActivity {
                         //response="success";
                         String nes = response.toString();
                         Log.d("resok",nes);
-                        if (!response.trim().equals("oks")) {
+                        if (response.trim().equals("oks")) {
                             Log.d("TAG", "onResponse: worked");
                             msg.setText("");
-
+                                adddatat();
                            // SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
 
                             // Creating an Editor object to edit(write to the file)
@@ -119,5 +201,16 @@ public class messages extends AppCompatActivity {
     public void init(){
         msg=findViewById(R.id.msg);
         snd=findViewById(R.id.sendbut);
+        rid=getIntent().getExtras().getInt("sid");
+        pid=getIntent().getExtras().getInt("lid");
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+        da n = new da();
+        touse=n.URL+"getmsg.php?me="+me+"&rid="+rid+"&pid="+pid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
