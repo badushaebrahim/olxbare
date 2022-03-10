@@ -61,7 +61,7 @@ public class addprod extends AppCompatActivity
 
 
         t1=(EditText)findViewById(R.id.nameu);
-        t2=(EditText)findViewById(R.id.desigu);
+        t2=(EditText)findViewById(R.id.detailu);
         img=(CircleImageView)findViewById(R.id.profile_image);
         pri=(EditText)findViewById(R.id.priceu);
         btncamera=(ImageView)findViewById(R.id.sbmit_camera);
