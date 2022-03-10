@@ -118,8 +118,10 @@ public class messages extends AppCompatActivity {
         }
         //adapter
       //  resinf rar = new resinf(Liste, this);
-            msgadapter m = new msgadapter(Liste,this);
-      //  reses.setAdapter(rar);
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+            msgadapter m = new msgadapter(Liste,this,me);
+        reses.setAdapter(m);
     }
 
     private void sendact() {
@@ -209,8 +211,17 @@ public class messages extends AppCompatActivity {
         touse=n.URL+"getmsg.php?me="+me+"&rid="+rid+"&pid="+pid;
     }
 
+    void gohome(){
+        Intent intent = new Intent(messages.this, MainActivity.class);
+        //intent.putExtra("lname",header);
+        //intent.putExtra("rid",);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+    gohome();
     }
 }

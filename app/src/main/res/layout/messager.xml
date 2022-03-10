@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/colorAccent">
+    android:background="#2DD3B0"
+    android:backgroundTint="#92DBE4">
 
     <Button
         android:id="@+id/back"
@@ -46,6 +47,7 @@
                 android:id="@+id/msg"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="#131010"
                 android:ems="10"
                 android:hint="message"
                 android:inputType="textPersonName" />
