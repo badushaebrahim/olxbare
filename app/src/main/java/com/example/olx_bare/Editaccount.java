@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,17 +12,26 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Editaccount extends AppCompatActivity {
    EditText name,email,password,phone,address;
    String na,em,pw,ph,ad;
+   String una,uem,uad,uph,upw;
    int pho;
    da n = new da();
     RequestQueue queue;
@@ -29,6 +39,9 @@ public class Editaccount extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editaccount);
+        //remove action bar
+        this.getSupportActionBar().hide();
+        //function populate the edit text with neede values
         datafunction();
     }
 
@@ -103,4 +116,116 @@ public class Editaccount extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void getedi(){
+        una=name.getText().toString().trim();
+        uem=email.getText().toString().trim();
+        upw=password.getText().toString().trim();
+        uph=phone.getText().toString().trim();
+        uad=address.getText().toString();
+
+    }
+
+
+    public void edito(View v){
+        getedi();
+
+
+
+        if (!uem.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")) {
+            Toast.makeText(getApplicationContext(), "62", Toast.LENGTH_SHORT).show();
+            email.requestFocus();
+            email.setError("please enter valid email");
+
+        }
+        else if (upw.length()<8) {
+            Toast.makeText(getApplicationContext(), "66", Toast.LENGTH_SHORT).show();
+            password.requestFocus();
+            password.setError("Please add password with atleast 8 characters");
+        }
+        else if (upw.isEmpty()){
+            password.requestFocus();
+            password.setError("Empty Password");
+            Toast.makeText(getApplicationContext(), "No Password", Toast.LENGTH_SHORT).show();
+        }
+        else if (uem.isEmpty()){
+            email.requestFocus();
+            email.setError("Empty Email");
+            Toast.makeText(getApplicationContext(), "No Email is empty", Toast.LENGTH_SHORT).show();
+        }
+        else if (uph.isEmpty()){
+            phone.requestFocus();
+            phone.setError("Empty Phone Number");
+            Toast.makeText(getApplicationContext(), "No Phone Number", Toast.LENGTH_SHORT).show();
+        }else if (uad.isEmpty()){
+            address.requestFocus();
+            address.setError("Empty Address");
+            Toast.makeText(getApplicationContext(), "No address", Toast.LENGTH_SHORT).show();
+        }
+        else if (una.isEmpty()){
+            email.requestFocus();
+            email.setError("Empty Name");
+            Toast.makeText(getApplicationContext(), "No Name", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL + "editacc.php", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    String TAG = "regisrer";
+                    if (response.trim().equals("success")) {
+                        Log.d(TAG, "onResponse: uss");
+                        Intent i = new Intent(Editaccount.this,
+                                Login.class);
+                       /* i.putExtra("name",name);
+                        i.putExtra("upw",upw);
+                        i.putExtra("email",email);
+                        i.putExtra("number",phoneno);
+                        i.putExtra("address",address);
+                        */
+                        startActivity(i);
+
+
+                    } else if (response.trim().equals("failure")) {
+                        Log.d(TAG, "onResponse: fil");
+
+
+                    }
+                    Log.d(TAG, "onResponse: " + response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> data = new HashMap<>();
+                    data.put("name", una);
+                    data.put("email", uem);
+                    data.put("password", upw);
+                    data.put("address", uad);
+                    data.put("number", uph);
+
+                    return data;
+                }
+            };
+            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            requestQueue.add(stringRequest);
+    }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
