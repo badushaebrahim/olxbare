@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,7 +88,7 @@ public  void getdata(){
                             Log.d(TAG, "onResponse: uss");
                             Toast.makeText(getApplicationContext(), "Update OK", Toast.LENGTH_SHORT).show();
                             Intent i2 = new Intent(editprod.this,
-                                    MainActivity.class);
+                                    MyListings.class);
                             startActivity(i2);
                             finish();
 
@@ -110,13 +111,13 @@ public  void getdata(){
                         Map<String, String> data = new HashMap<>();
                         data.put("head", una);
                         data.put("price",upr);
-                        data.put("details",ude);
+                        data.put("detail",ude);
                         int mak=getIntent().getExtras().getInt("lid");
-                        data.put("ids", String.valueOf(mak));
+                        data.put("id", String.valueOf(mak));
                         return data;
                     }
                 };
-                //RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 queue.add(stringRequest);
         }
     }
