@@ -74,6 +74,47 @@ public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1
                 intent.putExtra("price",getDataAdapter.getExpprice());
                 context.startActivity(intent);
             }});
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, newr.class);
+                //Log.d("TAG", "onClick: "+getDataAdapter.getLid());
+
+                intent.putExtra("head",getDataAdapter.getHead());
+                intent.putExtra("lat",getDataAdapter.getLat());
+                intent.putExtra("longi",getDataAdapter.getLongi());
+                intent.putExtra("Details",getDataAdapter.getDetail());
+                intent.putExtra("lid",getDataAdapter.getLid());
+                intent.putExtra("sid",getDataAdapter.getSellerid());
+                intent.putExtra("imglink",getDataAdapter.getLink());
+                intent.putExtra("contact",getDataAdapter.getNumber());
+                intent.putExtra("type",getDataAdapter.getType());
+                intent.putExtra("address",getDataAdapter.getAddress());
+                intent.putExtra("price",getDataAdapter.getExpprice());
+                context.startActivity(intent);
+            }
+        });
+        holder.videoTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, newr.class);
+                //Log.d("TAG", "onClick: "+getDataAdapter.getLid());
+
+                intent.putExtra("head",getDataAdapter.getHead());
+                intent.putExtra("lat",getDataAdapter.getLat());
+                intent.putExtra("longi",getDataAdapter.getLongi());
+                intent.putExtra("Details",getDataAdapter.getDetail());
+                intent.putExtra("lid",getDataAdapter.getLid());
+                intent.putExtra("sid",getDataAdapter.getSellerid());
+                intent.putExtra("imglink",getDataAdapter.getLink());
+                intent.putExtra("contact",getDataAdapter.getNumber());
+                intent.putExtra("type",getDataAdapter.getType());
+                intent.putExtra("address",getDataAdapter.getAddress());
+                intent.putExtra("price",getDataAdapter.getExpprice());
+                context.startActivity(intent);
+            }
+        });
+
         /* public void onClick() {
             //------listener onClick example method body ------
             Intent intent = new Intent(context, resinf.class);
