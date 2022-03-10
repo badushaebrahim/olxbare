@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
 //set the spinners adapter to the previously created one.
         dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{" ", "Listings", "Message", "Logout"};
+        String[] items = new String[]{" ","Account", "Listings", "Message", "Logout"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 items);
@@ -263,6 +263,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (result) {
                     case " ":
                         break;
+                    case "Account":
+                        Actions("Account");
+                        break;
                     case "Listings":
                         Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
                         Actions("Listings");
@@ -308,6 +311,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent22);
                 finish();
                 break;
+            case "Account":
+                Intent inr = new Intent(MainActivity.this,Editaccount.class);
+                startActivity(inr);
+                finish();
+                break;
         }
     }
 
@@ -317,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
         /// bm = findViewById(R.id.bottenav);
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
-        Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
         //make();
         frags();
 

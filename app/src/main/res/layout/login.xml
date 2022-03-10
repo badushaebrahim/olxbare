@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.188" />
 
     <EditText
-        android:id="@+id/Email"
+        android:id="@+id/Emailed"
         android:layout_width="322dp"
         android:layout_height="55dp"
         android:layout_marginTop="130dp"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/Passworded"
         android:layout_width="329dp"
         android:layout_height="58dp"
         android:layout_marginTop="24dp"
@@ -57,7 +57,7 @@
         android:textColorHint="#131010"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
+        app:layout_constraintTop_toBottomOf="@+id/Emailed" />
 
     <Button
         android:id="@+id/login"
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password"
+        app:layout_constraintTop_toBottomOf="@+id/Passworded"
         app:layout_constraintVertical_bias="0.421"
         app:rippleColor="#F8F6F6"
         app:strokeColor="#EAE5E5" />
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.295"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password"
+        app:layout_constraintTop_toBottomOf="@+id/Passworded"
         app:layout_constraintVertical_bias="0.484" />
 
     <TextView
@@ -111,5 +111,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Register"
-        app:layout_constraintTop_toBottomOf="@+id/Password" />
+        app:layout_constraintTop_toBottomOf="@+id/Passworded" />
 </androidx.constraintlayout.widget.ConstraintLayout>

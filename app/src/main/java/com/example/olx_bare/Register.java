@@ -1,6 +1,5 @@
 package com.example.olx_bare;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,12 +36,12 @@ public class Register  extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "save called", Toast.LENGTH_SHORT).show();
         String name,email,pwd,pwd2,phoneno,address;
         int tno;
-        EditText n1= (EditText) findViewById(R.id.Name);
-        EditText n2= (EditText) findViewById(R.id.Email);
-        EditText n3= (EditText) findViewById(R.id.Password);
+        EditText n1= (EditText) findViewById(R.id.Nameed);
+        EditText n2= (EditText) findViewById(R.id.Emailed);
+        EditText n3= (EditText) findViewById(R.id.Passworded);
         EditText n31= (EditText) findViewById(R.id.password2);
-        EditText n4= (EditText) findViewById(R.id.Number);
-        EditText n5= (EditText) findViewById(R.id.Address);
+        EditText n4= (EditText) findViewById(R.id.Numbered);
+        EditText n5= (EditText) findViewById(R.id.Addressed);
         name= n1.getText().toString();
         email=n2.getText().toString();
         pwd= n3.getText().toString();
@@ -119,12 +118,12 @@ public class Register  extends AppCompatActivity {
 public  void bypas(View v){
     String name,email,pwd,pwd2,phoneno,address;
     int tno;
-    EditText n1= (EditText) findViewById(R.id.Name);
-    EditText n2= (EditText) findViewById(R.id.Email);
-    EditText n3= (EditText) findViewById(R.id.Password);
+    EditText n1= (EditText) findViewById(R.id.Nameed);
+    EditText n2= (EditText) findViewById(R.id.Emailed);
+    EditText n3= (EditText) findViewById(R.id.Passworded);
     EditText n31= (EditText) findViewById(R.id.password2);
-    EditText n4= (EditText) findViewById(R.id.Number);
-    EditText n5= (EditText) findViewById(R.id.Address);
+    EditText n4= (EditText) findViewById(R.id.Numbered);
+    EditText n5= (EditText) findViewById(R.id.Addressed);
     name= n1.getText().toString();
     email=n2.getText().toString();
     pwd= n3.getText().toString();
@@ -223,12 +222,12 @@ public  void bypas(View v){
 public void ultrabypas(View v){
     String name,email,pwd,pwd2,phoneno,address;
     int tno;
-    EditText n1= (EditText) findViewById(R.id.Name);
-    EditText n2= (EditText) findViewById(R.id.Email);
-    EditText n3= (EditText) findViewById(R.id.Password);
+    EditText n1= (EditText) findViewById(R.id.Nameed);
+    EditText n2= (EditText) findViewById(R.id.Emailed);
+    EditText n3= (EditText) findViewById(R.id.Passworded);
     EditText n31= (EditText) findViewById(R.id.password2);
-    EditText n4= (EditText) findViewById(R.id.Number);
-    EditText n5= (EditText) findViewById(R.id.Address);
+    EditText n4= (EditText) findViewById(R.id.Numbered);
+    EditText n5= (EditText) findViewById(R.id.Addressed);
     name= n1.getText().toString();
     email=n2.getText().toString();
     pwd= n3.getText().toString();

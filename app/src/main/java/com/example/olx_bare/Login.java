@@ -47,8 +47,8 @@ public class Login  extends AppCompatActivity {
         finish();
     }
     public void  login (View v ){
-        EditText email=findViewById(R.id.Email);
-        EditText password=findViewById(R.id.Password);
+        EditText email=findViewById(R.id.Emailed);
+        EditText password=findViewById(R.id.Passworded);
         EMAIL = email.getText().toString().trim();
         PASSWORD = password.getText().toString().trim();
             da n = new da();

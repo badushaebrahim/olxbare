@@ -19,8 +19,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.util.Locale;
-
 public class newr extends FragmentActivity implements OnMapReadyCallback {
     RequestQueue queue;
     GoogleMap mMap;
@@ -43,7 +41,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         details = findViewById(R.id.Details);
         img = findViewById(R.id.image);
         price=findViewById(R.id.price);
-        address=findViewById(R.id.Address);
+        address=findViewById(R.id.Addressed);
         contact= getIntent().getExtras().getString("contact");
 
 
