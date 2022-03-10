@@ -86,7 +86,7 @@ public class Editaccount extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //Listing l = new Listing();
+
             na =jos.getString("name");
             name.setText(na);
             ad=jos.getString("address");
@@ -97,8 +97,7 @@ public class Editaccount extends AppCompatActivity {
             password.setText(pw);
             ph=jos.getString("Number");
             phone.setText(ph);
-            //Liste.add(l);
-           // System.out.println(l.getHead());
+
     }
     }
 

@@ -39,9 +39,10 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull resinf2.ViewHolder1 holder, int position) {
-        final Listing getDataAdapter =  liste.get(position);
+       Listing getDataAdapter =  liste.get(position);
         //holder.views.setText(getDataAdapter.getViews());
         new da("at resnif2");
+        Toast.makeText(context.getApplicationContext(), "at onbinde of resnif2", Toast.LENGTH_LONG).show();
         holder.videoTitle.setText(getDataAdapter.getHead());
         holder.views.setText(getDataAdapter.getHead());
         //Picasso.with(context).load(getDataAdapter.getChannel_image()).into(holder.channelImage);
@@ -49,17 +50,20 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
         String q= getDataAdapter.getType();
         Toast.makeText(context.getApplicationContext(), ""+q, Toast.LENGTH_SHORT).show();
         if(q.equals("Product")){
-            new da("product at if ");
-            holder.im.setImageResource(R.drawable.cart);}
-        else {holder.im.setImageResource(R.drawable.service);}
+           // new da("product at if ");
+           // holder.im.setImageResource(R.drawable.cart);
+            }
+        else {
+            holder.im.setImageResource(R.drawable.service);
+        }
         //
         int pr= getDataAdapter.getExpprice();
         String  s=String.valueOf(pr);
         holder.lm.setText("More..");
-        holder.lm.setOnClickListener(new View.OnClickListener() {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, newr.class);
+                Intent intent = new Intent(context, editprod.class);
                 Log.d("TAG", "onClick: "+getDataAdapter.getLid());
 
                 intent.putExtra("head",getDataAdapter.getHead());
@@ -76,6 +80,26 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
                 context.startActivity(intent);
             }
         });
+       holder.lm.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               Intent intent = new Intent(context, editprod.class);
+               Log.d("TAG", "onClick: "+getDataAdapter.getLid());
+
+               intent.putExtra("head",getDataAdapter.getHead());
+               intent.putExtra("lat",getDataAdapter.getLat());
+               intent.putExtra("longi",getDataAdapter.getLongi());
+               intent.putExtra("Details",getDataAdapter.getDetail());
+               intent.putExtra("lid",getDataAdapter.getLid());
+               intent.putExtra("sid",getDataAdapter.getSellerid());
+               intent.putExtra("imglink",getDataAdapter.getLink());
+               intent.putExtra("contact",getDataAdapter.getNumber());
+               intent.putExtra("type",getDataAdapter.getType());
+               intent.putExtra("address",getDataAdapter.getAddress());
+               intent.putExtra("price",getDataAdapter.getExpprice());
+               context.startActivity(intent);
+           }
+       });
         /* public void onClick() {
             //------listener onClick example method body ------
             Intent intent = new Intent(context, resinf.class);
@@ -87,7 +111,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
 
     @Override
     public int getItemCount() {
-        return 0;
+        return liste.size();
     }
 
     public class ViewHolder1 extends RecyclerView.ViewHolder {

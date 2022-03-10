@@ -60,10 +60,10 @@ public class addprod extends AppCompatActivity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        t1=(EditText)findViewById(R.id.name);
-        t2=(EditText)findViewById(R.id.desig);
+        t1=(EditText)findViewById(R.id.nameu);
+        t2=(EditText)findViewById(R.id.desigu);
         img=(CircleImageView)findViewById(R.id.profile_image);
-        pri=(EditText)findViewById(R.id.price);
+        pri=(EditText)findViewById(R.id.priceu);
         btncamera=(ImageView)findViewById(R.id.sbmit_camera);
         btnupload=(Button)findViewById(R.id.sbmit_upload);
         Spinner dropdown=findViewById(R.id.spinner);

@@ -40,7 +40,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         head= findViewById(R.id.heading);
         details = findViewById(R.id.Details);
         img = findViewById(R.id.image);
-        price=findViewById(R.id.price);
+        price=findViewById(R.id.priceu);
         address=findViewById(R.id.Addressed);
         contact= getIntent().getExtras().getString("contact");
 

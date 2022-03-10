@@ -60,6 +60,7 @@
         <activity android:name=".messages" />
         <activity android:name=".messageslist" />
         <activity android:name=".Editaccount" />
+        <activity android:name=".editprod" />
 
     </application>
 

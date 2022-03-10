@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/nameu"
         android:layout_width="304dp"
         android:layout_height="65dp"
         android:ems="10"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.138" />
 
     <EditText
-        android:id="@+id/desig"
+        android:id="@+id/desigu"
         android:layout_width="302dp"
         android:layout_height="84dp"
         android:layout_marginTop="26dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.403"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintTop_toBottomOf="@+id/nameu" />
 
     <EditText
-        android:id="@+id/price"
+        android:id="@+id/priceu"
         android:layout_width="301dp"
         android:layout_height="64dp"
         android:layout_marginTop="20dp"
@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desig" />
+        app:layout_constraintTop_toBottomOf="@+id/desigu" />
 
     <ImageView
         android:id="@+id/sbmit_camera"
@@ -68,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@+id/priceu"
         app:layout_constraintVertical_bias="0.178"
         app:srcCompat="@android:drawable/ic_menu_camera"
         tools:srcCompat="@android:drawable/ic_menu_camera" />
@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.843"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@+id/priceu"
         app:layout_constraintVertical_bias="0.086" />
 
     <Button
@@ -98,5 +98,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.368"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/priceu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

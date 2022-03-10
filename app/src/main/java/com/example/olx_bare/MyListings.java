@@ -36,7 +36,7 @@ public class MyListings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listi);
         killactionbar();
-        init();
+
         p1();
     }
     public void init(){
@@ -44,7 +44,7 @@ public class MyListings extends AppCompatActivity {
         reslay = new LinearLayoutManager(this);
         reses.setLayoutManager(reslay);
         Liste = new ArrayList<>();}
-    public void p1(){
+    public void p1(){init();
         JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getdata.php",
                 responce -> {
                     try {

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/rus/olx_bare/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.30104166666666665" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/drawable/itmselector.xml" value="0.37864583333333335" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/drawable/rounded.xml" value="0.37864583333333335" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -12,6 +13,7 @@
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/carvie.xml" value="0.3625" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/carvie2.xml" value="0.3625" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/editaccount.xml" value="0.3052536231884058" />
+        <entry key="..\:/rus/olx_bare/app/src/main/res/layout/editpord.xml" value="0.29981884057971014" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/fragment_dashboard.xml" value="0.276268115942029" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/fragment_first.xml" value="0.22" />
         <entry key="..\:/rus/olx_bare/app/src/main/res/layout/fragment_home.xml" value="0.276268115942029" />

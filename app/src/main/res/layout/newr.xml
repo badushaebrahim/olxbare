@@ -44,7 +44,7 @@
                 android:text="TextView"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/priceu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
