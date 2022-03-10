@@ -100,10 +100,10 @@
                 android:layout_width="182dp"
                 android:layout_height="49dp"
                 android:layout_marginTop="48dp"
-                android:onClick="ultrabypas"
+                android:onClick="edito"
                 android:shadowColor="#BF2929"
                 android:shadowRadius="145"
-                android:text="Register"
+                android:text="Update"
                 android:textColorLink="#710505"
                 app:cornerRadius="25dp"
                 app:rippleColor="#10F6EF" />

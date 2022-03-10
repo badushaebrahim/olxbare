@@ -27,12 +27,13 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 public class Editaccount extends AppCompatActivity {
    EditText name,email,password,phone,address;
    String na,em,pw,ph,ad;
    String una,uem,uad,uph,upw;
-   int pho;
+   int pho,me;
    da n = new da();
     RequestQueue queue;
     @Override
@@ -43,6 +44,8 @@ public class Editaccount extends AppCompatActivity {
         this.getSupportActionBar().hide();
         //function populate the edit text with neede values
         datafunction();
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        me = sh.getInt("uid", 0);
     }
 
 
@@ -56,7 +59,7 @@ public class Editaccount extends AppCompatActivity {
         void datafunction(){
         init();
             @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
-            int me = sh.getInt("uid", 0);
+            me = sh.getInt("uid", 0);
             JsonArrayRequest jar = new JsonArrayRequest(n.URL + "getacc.php?uid="+me,
                     responce -> {
                         System.out.println(responce);
@@ -174,16 +177,11 @@ public class Editaccount extends AppCompatActivity {
                     String TAG = "regisrer";
                     if (response.trim().equals("success")) {
                         Log.d(TAG, "onResponse: uss");
-                        Intent i = new Intent(Editaccount.this,
-                                Login.class);
-                       /* i.putExtra("name",name);
-                        i.putExtra("upw",upw);
-                        i.putExtra("email",email);
-                        i.putExtra("number",phoneno);
-                        i.putExtra("address",address);
-                        */
-                        startActivity(i);
-
+                        Toast.makeText(getApplicationContext(), "Update OK", Toast.LENGTH_LONG).show();
+                        Intent i2 = new Intent(Editaccount.this,
+                                MainActivity.class);
+                        startActivity(i2);
+                            finish();
 
                     } else if (response.trim().equals("failure")) {
                         Log.d(TAG, "onResponse: fil");
@@ -195,7 +193,7 @@ public class Editaccount extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_LONG).show();
                 }
             }) {
                 @Override
@@ -206,12 +204,12 @@ public class Editaccount extends AppCompatActivity {
                     data.put("password", upw);
                     data.put("address", uad);
                     data.put("number", uph);
-
+                    data.put("ids", String.valueOf(me));
                     return data;
                 }
             };
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(stringRequest);
+            //RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+            queue.add(stringRequest);
     }
 
 
