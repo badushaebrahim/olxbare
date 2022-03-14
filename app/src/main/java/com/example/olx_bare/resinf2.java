@@ -54,7 +54,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
            // holder.im.setImageResource(R.drawable.cart);
             }
         else {
-            holder.im.setImageResource(R.drawable.service);
+            //holder.im.setImageResource(R.drawable.service);
         }
         //
         int pr= getDataAdapter.getExpprice();
