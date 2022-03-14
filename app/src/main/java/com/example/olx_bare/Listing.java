@@ -58,8 +58,8 @@ da k = new da();
         this.longi = longi;
     }
 
-    String link,head,detail,Number,Address,type;
-    int sellerid,Lid,expprice;
+    String link,head,detail,Number,Address,type,expprice;
+    int sellerid,Lid;
     float lat,longi;
     public  void setAddress(String add){Address=add;}
     public String getAddress(){return Address;
@@ -75,10 +75,10 @@ da k = new da();
 
     public void setNumber(String num){Number= num;};
     public String getNumber(){return Number;}
-    public void setprice(int expected_price) {
+    public void setprice(String expected_price) {
     this.expprice=expected_price;
     }
-    public int getExpprice(){
+    public String getExpprice(){
         return expprice;
     }
 }

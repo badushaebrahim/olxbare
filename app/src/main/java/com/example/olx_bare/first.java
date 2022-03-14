@@ -110,7 +110,7 @@ RecyclerView.LayoutManager reslay;
             l.setAddress(jos.getString("address"));
             l.setType(jos.getString("type"));
             l.setLid(jos.getInt("Lid"));
-            l.setprice(jos.getInt("expected_price"));
+            //l.setprice(jos.getInt("expected_price"));
             Liste.add(l);
             System.out.println(l.getHead());
         }

@@ -73,17 +73,6 @@
 
     </LinearLayout>
 
-    <androidx.viewpager.widget.ViewPager
-
-        android:id="@+id/vpPager"
-        android:layout_width="405dp"
-        android:layout_height="506dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"></androidx.viewpager.widget.ViewPager>
-
     <!--<com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottenav"
         android:layout_width="414dp"
@@ -151,6 +140,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_info"
         app:tint="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mydraw"
+        android:layout_width="406dp"
+        android:layout_height="628dp"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

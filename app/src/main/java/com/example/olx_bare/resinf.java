@@ -52,7 +52,7 @@ public class resinf<ViewHolder1> extends RecyclerView.Adapter<resinf.ViewHolder1
         holder.im.setImageResource(R.drawable.cart);}
         else {holder.im.setImageResource(R.drawable.service);}
         //
-        int pr= getDataAdapter.getExpprice();
+        String pr= getDataAdapter.getExpprice();
         String  s=String.valueOf(pr);
         holder.lm.setText(s);
         holder.lm.setOnClickListener(new View.OnClickListener() {

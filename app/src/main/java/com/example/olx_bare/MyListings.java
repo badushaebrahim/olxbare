@@ -68,7 +68,7 @@ public class MyListings extends AppCompatActivity {
             int ch=jos.getInt("sellerid");
             @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
             int me = sh.getInt("uid", 0);
-            Toast.makeText(getApplicationContext(), "iam"+me, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "iam"+me, Toast.LENGTH_SHORT).show();
             if(ch==me) {
                 l.setLink(jos.getString("imagelink"));
                 l.setDetail(jos.getString("long_details"));
@@ -80,7 +80,7 @@ public class MyListings extends AppCompatActivity {
                 l.setAddress(jos.getString("address"));
                 l.setType(jos.getString("type"));
                 l.setLid(jos.getInt("Lid"));
-                l.setprice(jos.getInt("expected_price"));
+                l.setprice(jos.getString("expected_price"));
                 Liste.add(l);
                 new da("1");
                 System.out.println(l.getHead());

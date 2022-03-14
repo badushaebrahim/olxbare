@@ -57,7 +57,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
             //holder.im.setImageResource(R.drawable.service);
         }
         //
-        int pr= getDataAdapter.getExpprice();
+        String pr= getDataAdapter.getExpprice();
         String  s=String.valueOf(pr);
         holder.lm.setText("More..");
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
