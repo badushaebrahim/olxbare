@@ -27,7 +27,8 @@ public class editprod extends AppCompatActivity {
         String na,de;
         String pr;
     RequestQueue queue;
-    int me,sh;
+    int me;
+    String sh;
     da n = new da();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,11 +51,11 @@ public  void getdata(){
 
             na =getIntent().getExtras().getString("head");
             name.setText(na);
-            sh=getIntent().getExtras().getInt("price");
-            pr=Integer.toString(sh);
-            System.out.print(pr);
+            sh=getIntent().getExtras().getString("price");
+            //pr=Integer.toString(sh);
+            System.out.print(sh);
     Log.d("TAG", "getdata: "+pr);
-            price.setText(pr);
+            price.setText(sh);
             de = getIntent().getExtras().getString("Details");
             detail.setText(de);
 
@@ -65,7 +66,7 @@ public  void getdata(){
         init();
         una=name.getText().toString().trim();
         ude=detail.getText().toString().trim();
-        upr=detail.getText().toString().trim();
+        upr=price.getText().toString().trim();
         if(una.isEmpty()){
             name.requestFocus();
             name.setError("Empty Name");

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.PermissionRequest;
@@ -160,7 +161,9 @@ public class addprod extends AppCompatActivity
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
+                System.out.println(error);
+                Log.d("TAG", "onErrorResponse: "+error.toString());
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
             }
         })
         {
@@ -186,6 +189,11 @@ public class addprod extends AppCompatActivity
 
 
     }  // end of function uploadto DB
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 
     @Override
     public void onBackPressed() {

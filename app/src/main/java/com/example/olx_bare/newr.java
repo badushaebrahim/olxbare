@@ -27,7 +27,11 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
     ImageView img;
     String TAG ="Newr Activity";
     String header,contact;
-    int sid, lid ,pric,la,lo;
+    int sid;
+    int lid;
+    String pric;
+    int la;
+    int lo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +62,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         //load an imge using picasso
         String lin = getIntent().getExtras().getString("imglink");
         da l = new da();
-        pric = getIntent().getExtras().getInt("price");
+        pric = getIntent().getExtras().getString("price");
         price.setText("Expected Price :-"+pric);
         String addr = getIntent().getExtras().getString("address");
         address.setText(addr);
