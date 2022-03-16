@@ -1,10 +1,13 @@
 package com.example.olx_bare;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -86,7 +89,13 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         longi =getIntent().getExtras().getFloat("longi");
         lat = getIntent().getExtras().getFloat("lat");
 
-
+        Button ki= findViewById(R.id.button2);
+        @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
+        int me = sh.getInt("uid", 0);
+        String ch =Integer.toString(me);
+        if(sid==me){
+            ki.setEnabled(false);
+        }
         /* StringRequest gets = new StringRequest( Request.Method.POST,url,new com.android.volley.Response.Listener<String>(){
 
             @Override

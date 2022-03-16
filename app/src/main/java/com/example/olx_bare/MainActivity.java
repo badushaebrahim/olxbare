@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
       //  Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
         make();
         p1();
-        frags();
+        //frags();
 
         // View view = inflater.inflate(R.layout.fragment_first, container, false);
 
@@ -289,11 +289,12 @@ public class MainActivity extends AppCompatActivity {
                         Actions("Account");
                         break;
                     case "Listings":
-                        Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "my listing", LENGTH_SHORT).show();
                         Actions("Listings");
                         break;
                     case "Message":
-                        Toast.makeText(getApplicationContext(), "message", LENGTH_SHORT).show();
+                        Actions("Message");
+                        //Toast.makeText(getApplicationContext(), "message", LENGTH_SHORT).show();
                         break;
                     case "Logout":
                         Actions("Login");
@@ -397,7 +398,7 @@ public class MainActivity extends AppCompatActivity {
         int me = sh.getInt("uid", 0);
         //Toast.makeText(getApplicationContext(), "me" + me, LENGTH_SHORT).show();
         //make();
-        frags();
+       // frags();
 
         super.onRestart();
     }

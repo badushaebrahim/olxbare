@@ -116,15 +116,14 @@
         android:id="@+id/add_alarm_action_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
-        android:text="Add Product"
+        android:layout_marginStart="83dp"
 
+        android:text="Add Product"
         android:textColor="#191515"
-        app:layout_constraintEnd_toEndOf="@+id/add_fab"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/add_alarm_fab"
-        app:layout_constraintTop_toTopOf="@+id/add_alarm_fab" />
+        app:layout_constraintBottom_toBottomOf="@+id/add_alarm_fab"
+        app:layout_constraintStart_toStartOf="@+id/add_alarm_fab"
+        app:layout_constraintTop_toTopOf="@+id/add_alarm_fab"
+        app:layout_constraintVertical_bias="0.513" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_alarm_fab"
@@ -143,8 +142,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mydraw"
-        android:layout_width="406dp"
-        android:layout_height="628dp"
+        android:layout_width="413dp"
+        android:layout_height="650dp"
         android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
