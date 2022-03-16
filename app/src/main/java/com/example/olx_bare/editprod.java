@@ -60,7 +60,45 @@ public  void getdata(){
             detail.setText(de);
 
         }
+        public void deldata(View V){
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, n.URL + "deletelist.php", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    String TAG = "regisrer";
+                    if (response.trim().equals("success")) {
+                        Log.d(TAG, "onResponse: uss");
+                        Toast.makeText(getApplicationContext(), "deleted OK", Toast.LENGTH_SHORT).show();
+                        Intent i2 = new Intent(editprod.this,
+                                MyListings.class);
+                        startActivity(i2);
+                        finish();
 
+                    } else if (response.trim().equals("failure")) {
+
+                        Log.d(TAG, "onResponse: fil");
+
+
+                    }
+                    Log.d(TAG, "onResponse: " + response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_LONG).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> data = new HashMap<>();
+
+                    int mak=getIntent().getExtras().getInt("lid");
+                    data.put("id", String.valueOf(mak));
+                    return data;
+                }
+            };
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+            queue.add(stringRequest);
+        }
 
       public void newdata(View V){
         init();

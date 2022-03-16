@@ -31,7 +31,7 @@ public class resinf2<ViewHolder1> extends RecyclerView.Adapter<resinf2.ViewHolde
     @NonNull
     @Override
     public resinf2.ViewHolder1 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carvie, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.carvie2, parent, false);
         System.out.print("at resnif 2 on create");
         resinf2.ViewHolder1 viewHolder = new resinf2.ViewHolder1(view);
         return viewHolder;
