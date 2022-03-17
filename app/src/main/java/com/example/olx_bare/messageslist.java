@@ -1,12 +1,16 @@
 package com.example.olx_bare;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
@@ -17,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class messageslist  extends AppCompatActivity {
@@ -26,17 +31,33 @@ public class messageslist  extends AppCompatActivity {
     RecyclerView.LayoutManager reslay;
     List<msglistmodel> Liste;
     String touse;
+    Button br;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.msglist);
-
+        reses=findViewById(R.id.recyclerView2);
+        reslay = new LinearLayoutManager(this);
+        reses.setLayoutManager(reslay);
+        Liste = new ArrayList<>();
+        this.getSupportActionBar().hide();
+        br=findViewById(R.id.back);
+        br.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(messageslist.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        getdatafrom();
     }
     private void getdatafrom() {
+
         da n = new da();
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
-        touse= n.URL+"?id="+me;
+        touse= n.URL+"getmsglist.php?id="+me;
         JsonArrayRequest jar = new JsonArrayRequest(touse ,
                 responce -> {
                     try {
@@ -72,13 +93,19 @@ public class messageslist  extends AppCompatActivity {
         //  resinf rar = new resinf(Liste, this);
         @SuppressLint("WrongConstant") SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_APPEND);
         int me = sh.getInt("uid", 0);
-        msglistadapter m = new msglistadapter(Liste,this,me);
+        msglistadapter m = new msglistadapter(Liste,this);
         reses.setAdapter(m);
     }
 
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
+        //super.onBackPressed();
+        Intent intent = new Intent(messageslist.this, MainActivity.class);
+        //intent.putExtra("lname",header);
+        //intent.putExtra("rid",);
+        startActivity(intent);
+        finish();
     }
 }

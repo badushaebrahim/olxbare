@@ -78,25 +78,7 @@ public class messages extends AppCompatActivity {
                     }
                 },
                 error -> Toast.makeText(messages.this, error.toString(), Toast.LENGTH_LONG).show());
-          /*  StringRequest jar= new StringRequest(n.URL + "getdata.php",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.d("TAG", "onResponse: "+response);
-                            System.out.println(response);
-                            GsonBuilder builder=new GsonBuilder();
-                            Gson gson=builder.create();
-                            Listing[] data =gson.fromJson(response, Listing[].class);
-                            //Log.d("TAG of ", "onResponse: "+data[]);
 
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getContext(),error.toString(),Toast.LENGTH_LONG).show();
-                    Log.d("TAG", "onErrorResponse: "+error.toString());
-                }
-            });*/
 
         queue = Volley.newRequestQueue(messages.this);
         queue.add(jar);
