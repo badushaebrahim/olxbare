@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,11 +42,13 @@ public class msglistadapter<ViewHolder1> extends RecyclerView.Adapter<msglistada
         holder.b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context, "onclick at respond", Toast.LENGTH_LONG).show();
                 Intent k = new Intent(context,messages.class);
                 k.putExtra("head",getDataAdapter.getProname());
 
                 k.putExtra("sid",getDataAdapter.getSid());
                 k.putExtra("lid",getDataAdapter.getProid());
+                context.startActivity(k);
             }
         });
     }
