@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +44,7 @@ public class msgadapter<ViewHolder1> extends RecyclerView.Adapter<msgadapter.Vie
         int csk=getDataAdapter.getSid();
        if(csk==me) {
           // holder.card.setCardBackgroundColor(Color.parseColor("#3be5eb"));
-            holder.card.setForegroundGravity(Gravity.RIGHT);
+           holder.card.setCardBackgroundColor(Color.BLUE);
        }else {
           // holder.card.setCardBackgroundColor(Color.parseColor("#35f079"));
            holder.card.setForegroundGravity(Gravity.LEFT);
