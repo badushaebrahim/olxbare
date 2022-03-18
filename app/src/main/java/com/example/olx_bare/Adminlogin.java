@@ -24,7 +24,7 @@ public class Adminlogin extends AppCompatActivity {
         pw=findViewById(R.id.adpwd);
         un= ud.getText().toString().trim();
         pd= pw.getText().toString().trim();
-        Toast.makeText(getApplicationContext(), ""+un+pd, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), ""+un+pd, Toast.LENGTH_LONG).show();
         if((un.equals("admin"))&&(pd.equals("1234"))){
             Intent k = new Intent(Adminlogin.this,weba.class);
             startActivity(k);
@@ -33,5 +33,10 @@ public class Adminlogin extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Emain or Password incorrec", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
