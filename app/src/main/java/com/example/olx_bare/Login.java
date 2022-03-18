@@ -102,5 +102,8 @@ public class Login  extends AppCompatActivity {
         }
     }
 
-
+public void goweb(View v){
+        Intent i = new Intent(Login.this,weba.class);
+        startActivity(i);
+}
 }

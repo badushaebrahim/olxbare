@@ -105,7 +105,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="18dp"
         android:minHeight="48dp"
-        android:onClick="mer"
+        android:onClick="goweb"
         android:text="If you have no Account"
         android:textColor="#100E0E"
         app:layout_constraintEnd_toEndOf="parent"
