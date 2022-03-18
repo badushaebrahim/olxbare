@@ -62,6 +62,7 @@
         <activity android:name=".Editaccount" />
         <activity android:name=".editprod" />
         <activity android:name=".weba" />
+        <activity android:name=".Adminlogin" />
 
     </application>
 
