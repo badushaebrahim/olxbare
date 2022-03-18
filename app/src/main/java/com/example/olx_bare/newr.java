@@ -35,7 +35,7 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
     String pric;
     int la;
     int lo;
-
+Button ns;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,17 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         price=findViewById(R.id.priceu);
         address=findViewById(R.id.Addressed);
         contact= getIntent().getExtras().getString("contact");
-
+    ns=findViewById(R.id.button9);
+    ns.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent i2 = new Intent(newr.this,Report.class);
+            lid =getIntent().getExtras().getInt("lid");
+            i2.putExtra("lid",lid);
+            startActivity(i2);
+            finish();
+        }
+    });
 
     }
 
@@ -170,6 +180,10 @@ public class newr extends FragmentActivity implements OnMapReadyCallback {
         intent.setData(Uri.parse("tel:"+contact));
         startActivity(intent);
     }
+
+
+
+
 }
 /* Scraped need for arrayrequest
 
